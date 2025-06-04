@@ -7,6 +7,7 @@ import Login from './Login';
 import Register from './Register';
 import TermsOfUse from './TermsOfUse';
 import PrivacyPolicy from './PrivacyPolicy';
+import CookiePolicy from './CookiePolicy';
 
 
 
@@ -49,6 +50,10 @@ import PrivacyPolicy from './PrivacyPolicy';
         {
           path: '/PrivacyPolicy' ,
           Component : PrivacyPolicy,
+        },
+        {
+          path: "/CookiePolicy",
+          Component : CookiePolicy,
         }
     ]
   },

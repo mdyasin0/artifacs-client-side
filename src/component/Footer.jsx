@@ -35,7 +35,7 @@ const Footer = () => {
 
           <NavLink to="/TermsOfUse" className="hover:text-[#d4af37]">Terms of use</NavLink>
           <NavLink to="/PrivacyPolicy" className="hover:text-[#d4af37]">Privacy policy</NavLink>
-          <NavLink className="hover:text-[#d4af37]">Cookie policy</NavLink>
+          <NavLink to="/CookiePolicy" className="hover:text-[#d4af37]">Cookie policy</NavLink>
         </div>
  
     </div>
