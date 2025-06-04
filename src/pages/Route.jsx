@@ -4,6 +4,7 @@ import Home from './Home';
 import home_Details from './home_Details';
 import App from '../App';
 import Login from './Login';
+import Register from './Register';
 
 
 
@@ -34,6 +35,10 @@ import Login from './Login';
         {
           path:"/login",
           Component : Login ,
+        },
+        {
+          path: "/Register" ,
+          Component : Register ,
         }
     ]
   },
