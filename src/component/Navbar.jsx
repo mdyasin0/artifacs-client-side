@@ -11,14 +11,14 @@ const Navbar = () => {
         </div>
 
         <div className="text-[#f5f5f5] flex gap-5 text-sm font-bold">
-          <NavLink className="hover:text-[#d4af37]">Home</NavLink>
+          <NavLink to="/Home" className="hover:text-[#d4af37]">Home</NavLink>
           <NavLink className="hover:text-[#d4af37]">All Artifacts</NavLink>
           <NavLink className="hover:text-[#d4af37]">Add Artifacts</NavLink>
         </div>
 
         <div className="flex items-center gap-3">
           <div>
-            <Link className="bg-[#8b5e3c] text-[#f5f5f5] hover:bg-[#a97442] py-1 px-3 rounded-lg text-sm font-bold">
+            <Link to="/login" className="bg-[#8b5e3c] text-[#f5f5f5] hover:bg-[#a97442] py-1 px-3 rounded-lg text-sm font-bold">
               Login
             </Link>
           </div>
