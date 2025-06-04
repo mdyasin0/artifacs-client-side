@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Navigation,
@@ -9,13 +9,29 @@ import {
   Autoplay,
 } from "swiper/modules";
 import "swiper/swiper-bundle.css";
+import { BiSolidLike } from "react-icons/bi";
+import { Link } from "react-router";
+
 
 const Home = () => {
+const [user, setuser] = useState([]);
+ useEffect(() => {
+    fetch('https://raw.githubusercontent.com/mdyasin0/assignment-11-json-data/refs/heads/main/Histrical.json') 
+      .then((res) => res.json())
+      .then((data) => {
+        setuser(data); 
+      })
+      .catch((error) =>
+         console.log('Error fetching data:', error));
+  }, []); 
+
+
   return (
-    <div className="">
+    <div>
       {/* Hero Slider */}
       <section className="pt-20 pb-20 ">
-        <Swiper className=""
+        <Swiper
+          className=""
           modules={[
             Navigation,
             Pagination,
@@ -48,7 +64,8 @@ const Home = () => {
                     Sultanganj Buddha!
                   </h1>
                   <p className="py-6 text-[#7a6a53]">
-                    This life-sized bronze statue of Buddha exemplifies ancient Indian metal casting techniques and Buddhist art.
+                    This life-sized bronze statue of Buddha exemplifies ancient
+                    Indian metal casting techniques and Buddhist art.
                   </p>
                 </div>
               </div>
@@ -68,12 +85,13 @@ const Home = () => {
                     Terracotta Army Soldier !
                   </h1>
                   <p className="py-6 text-[#7a6a53]">
-                    These life-sized statues were buried with China's first emperor to protect him in the afterlife.
+                    These life-sized statues were buried with China's first
+                    emperor to protect him in the afterlife.
                   </p>
                 </div>
               </div>
             </div>,
-           <div
+            <div
               className="hero min-h-screen"
               style={{ backgroundColor: "#faf4ec" }}
             >
@@ -88,7 +106,9 @@ const Home = () => {
                     Rosetta Stone !
                   </h1>
                   <p className="py-6 text-[#7a6a53]">
-                    The Rosetta Stone is a granodiorite stele inscribed with a decree issued in Memphis, Egypt, in three scripts: Greek, Demotic, and Hieroglyphic.
+                    The Rosetta Stone is a granodiorite stele inscribed with a
+                    decree issued in Memphis, Egypt, in three scripts: Greek,
+                    Demotic, and Hieroglyphic.
                   </p>
                 </div>
               </div>
@@ -105,10 +125,12 @@ const Home = () => {
 
                 <div className="text-start">
                   <h1 className="text-5xl font-bold text-[#2f2e2e]">
-                     Mona Lisa  !
+                    Mona Lisa !
                   </h1>
                   <p className="py-6 text-[#7a6a53]">
-                   Portrait by Leonardo da Vinci, believed to depict Lisa Gherardini, wife of Florentine merchant Francesco del Giocondo.
+                    Portrait by Leonardo da Vinci, believed to depict Lisa
+                    Gherardini, wife of Florentine merchant Francesco del
+                    Giocondo.
                   </p>
                 </div>
               </div>
@@ -122,6 +144,44 @@ const Home = () => {
           ))}
         </Swiper>
       </section>
+
+
+
+      {/*Featured Artifacts*/}
+      <h1 className="text-center font-bold text-4xl mb-10 text-[#2f2e2e]">
+        Featured Artifacts
+      </h1>
+
+          <div className="grid  mb-20 grid-cols-3 gap-10 max-w-6xl mx-auto">
+
+            {
+              user.map((user)=>(
+  <div key={user.id} className="bg-[#faf4ec]  border-[#ddd] p-10 rounded-lg ">
+            <img
+            className="max-w-56 rounded-lg mx-auto mb-3 " 
+            src={user.image} alt="" />
+
+
+            <h1 className="text-[#3a3a3a] text-2xl font-bold">
+              {user.title}
+              </h1>
+            <p>
+               <strong>description :</strong>{user.description} 
+            </p>
+            <div className="flex justify-between mt-5">
+              <Link to={`/details/${user.id}`}  className="text-sm cursor-pointer font-bold bg-[#8b5e3c] py-1 px-3 rounded-lg hover:bg-[#a97442] ">
+                View Details
+              </Link>
+              <div className="flex gap-1 items-center ">
+                <BiSolidLike /> {user.total_like}
+              </div>
+            </div>
+          </div>
+              ))
+            }
+          
+          </div>
+
     </div>
   );
 };

@@ -1,4 +1,5 @@
 
+import { Outlet } from 'react-router'
 import './App.css'
 import Footer from './component/Footer'
 import Navbar from './component/Navbar'
@@ -11,6 +12,8 @@ function App() {
     <>
 <Navbar></Navbar>
 <Home></Home>
+<Outlet></Outlet>
+
 <Footer></Footer>
     </>
   )

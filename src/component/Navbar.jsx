@@ -1,9 +1,10 @@
 import React from "react";
+import { FiLogOut } from "react-icons/fi";
 import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   return (
-    <div className="bg-[#3b2f2f] py-3 px-3 text-white">
+    <div className="bg-[#3b2f2f] py-3 px-3 sticky top-0 z-10 text-white">
       <div className="navbar flex justify-between  ">
         <div className="">
           <h1 className="text-[#fefae0] text-3xl font-bold">Legacy Vault </h1>
@@ -39,7 +40,7 @@ const Navbar = () => {
                 </div>
                 <div
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-[#3b2f2f] rounded-box z-1 mt-3 w-52 p-2 shadow "
+                  className="menu menu-sm dropdown-content px-5 space-y-5 h-screen bg-[#3b2f2f] rounded-box z-1 mt-3 w-52 pt-10 shadow "
                 >
                   <NavLink className="flex justify-between ">
                     <h1 className="hover:text-[#d4af37]">User's Name</h1>
@@ -47,13 +48,13 @@ const Navbar = () => {
                   </NavLink>
 
                   <NavLink className="hover:text-[#d4af37]">
-                    <a>My Artifacts</a>
+                    My Artifacts
                   </NavLink>
                   <NavLink className="hover:text-[#d4af37]">
-                    <a> Liked Artifacts</a>
+                     Liked Artifacts
                   </NavLink>
-                  <NavLink className="hover:text-[#d4af37]">
-                    <a>Logout</a>
+                  <NavLink className="hover:text-[#d4af37] flex items-center gap-1">
+                   Logout<FiLogOut />
                   </NavLink>
                 </div>
               </div>

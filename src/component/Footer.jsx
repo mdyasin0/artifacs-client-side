@@ -5,19 +5,19 @@ import { NavLink } from 'react-router';
 const Footer = () => {
     return (
         <div>
-            <footer class="bg-[#3b2f2f] text-[#eaeaea] py-10 px-4 ">
-  <div class="max-w-7xl mx-auto flex justify-between   gap-10">
+            <footer className="bg-[#3b2f2f] text-[#eaeaea] py-10 px-4 ">
+  <div className="max-w-7xl mx-auto flex justify-between   gap-10">
     
     
     <div className='w-56'> 
-      <h2 class="text-2xl font-bold text-[#fefae0]">Historical Artifacts Tracker</h2>
-      <p class="mt-4 text-sm text-[#eaeaea]">
+      <h2 className="text-2xl font-bold text-[#fefae0]">Historical Artifacts Tracker</h2>
+      <p className="mt-4 text-sm text-[#eaeaea]">
         Discover, preserve, and track the world's historical treasures. From ancient scrolls to forgotten artifacts — all in one place.
       </p>
     </div>
 
     <div>
-      <h3 class="text-xl font-semibold text-[#f5f5f5] mb-4">Quick Links</h3>
+      <h3 className="text-xl font-semibold text-[#f5f5f5] mb-4">Quick Links</h3>
     
         <div className="text-[#f5f5f5] flex-col flex gap-5 text-sm font-bold">
           <NavLink className="hover:text-[#d4af37]">Home</NavLink>
@@ -27,7 +27,7 @@ const Footer = () => {
  
     </div>
       <div>
-      <h3 class="text-xl font-semibold text-[#f5f5f5] mb-4">Legal</h3>
+      <h3 className="text-xl font-semibold text-[#f5f5f5] mb-4">Legal</h3>
     
         <div className="text-[#f5f5f5] flex-col flex gap-5 text-sm font-bold">
    
@@ -42,9 +42,9 @@ const Footer = () => {
 
     
     <div>
-      <h3 class="text-xl font-semibold text-[#f5f5f5] mb-4">Contact</h3>
-      <p class="text-sm">📧 Email: support@artifactstracker.com</p>
-      <p class="text-sm mt-2">📍 Location: Dhaka, Bangladesh</p>
+      <h3 className="text-xl font-semibold text-[#f5f5f5] mb-4">Contact</h3>
+      <p className="text-sm">📧 Email: support@artifactstracker.com</p>
+      <p className="text-sm mt-2">📍 Location: Dhaka, Bangladesh</p>
       <div className="mt-4 flex space-x-4">
       {/* Facebook */}
       <div className="relative group inline-block">
@@ -85,7 +85,7 @@ const Footer = () => {
     </div>
   </div>
 
-  <div class="mt-10 border-t border-[#ddd] pt-6 text-center text-sm text-[#eaeaea]">
+  <div className="mt-10 border-t border-[#ddd] pt-6 text-center text-sm text-[#eaeaea]">
     &copy; 2025 Historical Artifacts Tracker. All rights reserved.
   </div>
 </footer>
