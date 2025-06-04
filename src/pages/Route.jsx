@@ -5,6 +5,7 @@ import home_Details from './home_Details';
 import App from '../App';
 import Login from './Login';
 import Register from './Register';
+import TermsOfUse from './TermsOfUse';
 
 
 
@@ -39,6 +40,10 @@ import Register from './Register';
         {
           path: "/Register" ,
           Component : Register ,
+        },
+        {
+          path:"/TermsOfUse",
+          Component : TermsOfUse,
         }
     ]
   },
