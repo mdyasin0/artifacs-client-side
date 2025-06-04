@@ -6,6 +6,7 @@ import App from '../App';
 import Login from './Login';
 import Register from './Register';
 import TermsOfUse from './TermsOfUse';
+import PrivacyPolicy from './PrivacyPolicy';
 
 
 
@@ -44,6 +45,10 @@ import TermsOfUse from './TermsOfUse';
         {
           path:"/TermsOfUse",
           Component : TermsOfUse,
+        },
+        {
+          path: '/PrivacyPolicy' ,
+          Component : PrivacyPolicy,
         }
     ]
   },
