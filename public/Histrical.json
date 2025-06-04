@@ -1,0 +1,87 @@
+[
+
+
+{
+  "title": "Rosetta Stone",
+  "image": "https://i.ibb.co/39h8cp5r/Rosetta-Stone.jpg",
+  "timePeriod": "196 BC",
+  "origin": "Memphis, Egypt",
+  "material": "Granodiorite",
+  "dimensions": {
+    "height": "114.4 cm",
+    "width": "72.3 cm",
+    "weight": "760 kg"
+  },
+  "condition": "Good",
+  "currentLocation": "British Museum, London",
+  "estimatedValue": "Priceless",
+  "historicalSignificance": "It was key to deciphering Egyptian hieroglyphs.",
+  "description": "The Rosetta Stone is a granodiorite stele inscribed with a decree issued in Memphis, Egypt, in three scripts: Greek, Demotic, and Hieroglyphic.",
+  "discoveredBy": "Pierre-François Bouchard",
+  "dateOfDiscovery": "1799",
+  "preservationStatus": "Glass encased, climate-controlled environment"
+},
+{
+  "title": "Terracotta Army Soldier",
+  "image": "https://i.ibb.co/WNMdxqNP/51714-Terracota-Army.jpg",
+  "timePeriod": "210–209 BC",
+  "origin": "Xi'an, China",
+  "material": "Terracotta clay",
+  "dimensions": {
+    "height": "180 cm",
+    "width": "50 cm",
+    "weight": "150 kg"
+  },
+  "condition": "Excellent",
+  "currentLocation": "Emperor Qinshihuang's Mausoleum Site Museum, China",
+  "estimatedValue": "Invaluable cultural heritage",
+  "historicalSignificance": "Symbolizes China's first unification and funerary art.",
+  "description": "These life-sized statues were buried with China's first emperor to protect him in the afterlife.",
+  "discoveredBy": "Local farmers",
+  "dateOfDiscovery": "1974",
+  "preservationStatus": "Specialized underground preservation chambers"
+},
+{
+  "title": "Mona Lisa",
+  "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/1200px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg",
+  "timePeriod": "1503–1506",
+  "origin": "Florence, Italy",
+  "material": "Oil on poplar panel",
+  "dimensions": {
+    "height": "77 cm",
+    "width": "53 cm",
+    "weight": "Approx. 8 kg"
+  },
+  "condition": "Excellent",
+  "currentLocation": "Louvre Museum, Paris",
+  "estimatedValue": "$860 million (insured value)",
+  "historicalSignificance": "Considered the most famous painting in the world for its artistic techniques and mystery.",
+  "description": "Portrait by Leonardo da Vinci, believed to depict Lisa Gherardini, wife of Florentine merchant Francesco del Giocondo.",
+  "discoveredBy": "Preserved continuously since Renaissance",
+  "dateOfDiscovery": "Not 'discovered', but painted in 1503",
+  "preservationStatus": "Secured behind bulletproof glass, controlled lighting and temperature"
+},
+{
+  "title": "Sultanganj Buddha",
+  "image": "https://i.ibb.co/BV5nnH8Y/The-Sultanganj-Buddha.jpg",
+  "timePeriod": "7th Century AD (Gupta Period)",
+  "origin": "Sultanganj, Bihar, India",
+  "material": "Bronze",
+  "dimensions": {
+    "height": "2.3 meters",
+    "width": "1 meter",
+    "weight": "500 kg"
+  },
+  "condition": "Good",
+  "currentLocation": "Birmingham Museum and Art Gallery, UK",
+  "estimatedValue": "Priceless",
+  "historicalSignificance": "Largest known early metal Buddhist statue from the Gupta period.",
+  "description": "This life-sized bronze statue of Buddha exemplifies ancient Indian metal casting techniques and Buddhist art.",
+  "discoveredBy": "E.B. Harris",
+  "dateOfDiscovery": "1861",
+  "preservationStatus": "Indoor museum display with temperature and humidity control"
+}
+
+
+
+]
