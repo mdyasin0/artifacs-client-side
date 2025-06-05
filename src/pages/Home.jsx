@@ -12,6 +12,7 @@ import "swiper/swiper-bundle.css";
 import { BiSolidLike } from "react-icons/bi";
 import { Link } from "react-router";
 import HistoricalTimeline from "./Historical_Timeline";
+import ArtifactCard from "./like";
 
 const Home = () => {
   const [artifact, setArtifact] = useState(null);
@@ -21,7 +22,7 @@ const Home = () => {
     fetch("http://localhost:3000/artifacts")
       .then((res) => res.json())
       .then((data) => {
-        const sortedData = data.sort((a, b) => b.total_like - a.total_like);
+        const sortedData = data.sort((a, b) => b.liked_by.length - a.liked_by.length);
         setArtifact(sortedData);
       })
       .catch((error) => console.log("Error fetching data:", error));
@@ -37,6 +38,8 @@ const Home = () => {
 
   return (
     <div>
+
+
       {/* Hero Slider */}
       <section className="pt-20 pb-20 ">
         <Swiper
@@ -162,7 +165,7 @@ const Home = () => {
         {(showAll ? artifact : artifact.slice(0, 6)).map((user) => (
           <div
             key={user._id}
-            className="bg-[#faf4ec] border-[#ddd] p-10 rounded-lg"
+            className="bg-[#faf4ec] flex flex-col justify-between border-[#ddd] p-10 rounded-lg"
           >
             <img
               className="max-w-56 rounded-lg mx-auto mb-3"
@@ -173,7 +176,7 @@ const Home = () => {
             <p>
               <strong>Description :</strong> {user.description}
             </p>
-            <div className="flex justify-between mt-5">
+            <div className="flex justify-between  mb-0 mt-5">
               <Link
                 to={`/details/${user._id}`}
                 className="text-sm cursor-pointer font-bold bg-[#8b5e3c] py-1 px-3 rounded-lg hover:bg-[#a97442]"
@@ -181,7 +184,7 @@ const Home = () => {
                 View Details
               </Link>
               <div className="flex gap-1 items-center">
-                <BiSolidLike /> {user.total_like}
+                <BiSolidLike /> {user.liked_by.length}
               </div>
             </div>
           </div>

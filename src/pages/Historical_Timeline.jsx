@@ -20,7 +20,7 @@ const HistoricalTimeline = () => {
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
         {displayedTimeline.map((item) => (
           <div
-            key={item.id}
+            key={item._id}
             className="bg-[#faf4ec] border border-[#ddd] p-4 rounded-lg shadow-md"
           >
 
