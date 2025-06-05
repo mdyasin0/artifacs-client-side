@@ -1,6 +1,7 @@
 import {  Player } from "@lottiefiles/react-lottie-player";
 import React, { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { FcGoogle } from "react-icons/fc";
 import { Link, Links } from "react-router";
 
 const Login = () => {
@@ -70,6 +71,13 @@ const Login = () => {
             Login
           </button>
         </form>
+ <button
+            type="submit"
+            className="w-full flex gap-3 mt-5 items-center text-center justify-center bg-[#8b5e3c] text-[#f5f5f5] py-2 rounded-lg font-semibold hover:bg-[#a97442] transition-colors duration-300"
+          >
+           Login with   <FcGoogle />
+          </button>
+        
         <p className="text-center text-sm  mt-5">Don't have an account ?  
         <Link to="/Register" className="hover:text-green-500"> Register</Link>
         </p>
