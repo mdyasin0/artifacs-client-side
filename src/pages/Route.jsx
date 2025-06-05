@@ -9,6 +9,7 @@ import PrivacyPolicy from './PrivacyPolicy';
 import CookiePolicy from './CookiePolicy';
 import Home_Details from './home_Details';
 import AllArtifacts from './AllArtifacts';
+import AddArtifactForm from './AddArtifacts';
 
 
 
@@ -40,8 +41,11 @@ import AllArtifacts from './AllArtifacts';
         {
           path:"/AllArtifacts",
           Component :AllArtifacts ,
-        }
-        ,
+        },
+        {
+          path:"/AddArtifactForm",
+          Component : AddArtifactForm,
+        },
         {
           path:"/login",
           Component : Login ,

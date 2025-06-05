@@ -45,7 +45,7 @@ const Navbar = () => {
             All Artifacts
           </NavLink>
           <NavLink
-            to="/add-artifact"
+            to="/AddArtifactForm"
             className={({ isActive }) =>
               isActive
                 ? "text-[#d4af37] border-b-2 border-white pb-1"
