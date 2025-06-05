@@ -20,12 +20,14 @@ const Register = () => {
     console.log(name, email, URL, password);
     register(email,password)
     .then(res =>{
+
+      alert("Register successful");
       const result = res.user;
+
       // console.log(result);
       setuser(result);
     })  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
+  const errorMessage = error.message;
     console.log(errorMessage);
   });
 

@@ -1,15 +1,32 @@
-import {  Player } from "@lottiefiles/react-lottie-player";
-import React, { useState } from "react";
+import { Player } from "@lottiefiles/react-lottie-player";
+import React, { useContext, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Links } from "react-router";
+import { Authcontext } from "../Provider/Authprovider";
 
 const Login = () => {
-
-
-    const [ShowPassword,setShowPassword] = useState(false);
-
-
+  const [ShowPassword, setShowPassword] = useState(false);
+  const { login  } = useContext(Authcontext);
+const handalelogin = (e)=>{
+  e.preventDefault();
+const form = e.target;
+const email = form.email.value;
+const password = form.password.value;
+console.log(email,password);
+login(email,password)
+  .then((userCredential) => {
+    // Signed in 
+    alert("login successful");
+    const user = userCredential.user;
+    console.log(user);
+  })
+  .catch((error) => {
+   
+    const errorMessage = error.message;
+    console.log(errorMessage);
+  });
+}
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#faf4ec] px-4 py-12">
       {/* lottie-animation */}
@@ -18,17 +35,14 @@ const Login = () => {
         loop
         src="/lottie_login.json"
         style={{ height: "300px", width: "300px" }}
-      >
-       
-      </Player>
+      ></Player>
 
       <div className="w-full max-w-md bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 border border-[#ddd]">
         <h2 className="text-2xl font-semibold text-[#2f2e2e] text-center mb-2">
           Login to Your Account
         </h2>
-        
 
-        <form className="space-y-5">
+        <form onSubmit={handalelogin} className="space-y-5">
           <div>
             <label
               htmlFor="email"
@@ -38,7 +52,7 @@ const Login = () => {
             </label>
             <input
               type="email"
-              id="email"
+              name="email"
               required
               className="w-full px-4 py-2 border border-[#ddd] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
               placeholder="you@example.com"
@@ -54,14 +68,17 @@ const Login = () => {
             </label>
             <input
               type={ShowPassword ? "text" : "password"}
-              id="password"
+              name="password"
               required
               className="w-full relative px-4 py-2 border border-[#ddd] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
               placeholder="Enter your password"
-               
-
             />
-            <span onClick={()=>setShowPassword(!ShowPassword)} className="absolute  mt-3 -ml-7 text-sm cursor-pointer">{ ShowPassword ? <FaRegEye /> : <FaRegEyeSlash />}</span>
+            <span
+              onClick={() => setShowPassword(!ShowPassword)}
+              className="absolute  mt-3 -ml-7 text-sm cursor-pointer"
+            >
+              {ShowPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+            </span>
           </div>
 
           <button
@@ -71,15 +88,19 @@ const Login = () => {
             Login
           </button>
         </form>
- <button
-            type="submit"
-            className="w-full flex gap-3 mt-5 items-center text-center justify-center bg-[#8b5e3c] text-[#f5f5f5] py-2 rounded-lg font-semibold hover:bg-[#a97442] transition-colors duration-300"
-          >
-           Login with   <FcGoogle />
-          </button>
-        
-        <p className="text-center text-sm  mt-5">Don't have an account ?  
-        <Link to="/Register" className="hover:text-green-500"> Register</Link>
+        <button
+          type="submit"
+          className="w-full flex gap-3 mt-5 items-center text-center justify-center bg-[#8b5e3c] text-[#f5f5f5] py-2 rounded-lg font-semibold hover:bg-[#a97442] transition-colors duration-300"
+        >
+          Login with <FcGoogle />
+        </button>
+
+        <p className="text-center text-sm  mt-5">
+          Don't have an account ?
+          <Link to="/Register" className="hover:text-green-500">
+            {" "}
+            Register
+          </Link>
         </p>
       </div>
     </div>
