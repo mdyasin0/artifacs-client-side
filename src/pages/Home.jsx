@@ -193,12 +193,14 @@ const Home = () => {
 
       {/* Show All / Show Less Button */}
       <div className="text-center mb-20">
-        <button
+        <Link
+         to="/AllArtifacts"
           onClick={() => setShowAll(!showAll)}
           className="bg-[#8b5e3c] hover:bg-[#a97442] text-white font-bold py-2 px-5 rounded-lg transition duration-300"
         >
           {showAll ? "Show Less" : "Show All"}
-        </button>
+        </Link
+        >
       </div>
 
       {/* Timeline Section */}

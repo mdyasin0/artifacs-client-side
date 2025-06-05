@@ -8,6 +8,7 @@ import TermsOfUse from './TermsOfUse';
 import PrivacyPolicy from './PrivacyPolicy';
 import CookiePolicy from './CookiePolicy';
 import Home_Details from './home_Details';
+import AllArtifacts from './AllArtifacts';
 
 
 
@@ -35,6 +36,12 @@ import Home_Details from './home_Details';
           path: "/Home",
           Component: Home,
         },
+        
+        {
+          path:"/AllArtifacts",
+          Component :AllArtifacts ,
+        }
+        ,
         {
           path:"/login",
           Component : Login ,

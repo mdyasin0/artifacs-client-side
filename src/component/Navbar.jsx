@@ -5,7 +5,6 @@ import { Authcontext } from "../Provider/Authprovider";
 
 const Navbar = () => {
   const { user, logout } = useContext(Authcontext);
-  
 
   const handlelogout = () => {
     logout()
@@ -25,16 +24,47 @@ const Navbar = () => {
         </div>
 
         <div className="text-[#f5f5f5] flex gap-5 text-sm font-bold">
-          <NavLink to="/Home" className="hover:text-[#d4af37]">Home</NavLink>
-          <NavLink to="/all-artifacts" className="hover:text-[#d4af37]">All Artifacts</NavLink>
-          <NavLink to="/add-artifact" className="hover:text-[#d4af37]">Add Artifacts</NavLink>
+          <NavLink
+            to="/Home"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#d4af37] border-b-2 border-white pb-1"
+                : "hover:text-[#d4af37] "
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/AllArtifacts"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#d4af37] border-b-2 border-white pb-1"
+                : "hover:text-[#d4af37] "
+            }
+          >
+            All Artifacts
+          </NavLink>
+          <NavLink
+            to="/add-artifact"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#d4af37] border-b-2 border-white pb-1"
+                : "hover:text-[#d4af37] "
+            }
+          >
+            Add Artifacts
+          </NavLink>
         </div>
 
         <div className="flex items-center gap-3">
           {user ? (
             <div className="flex gap-2">
               <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
                   <div className="w-10 rounded-full">
                     <img
                       alt="User Photo"
@@ -54,9 +84,16 @@ const Navbar = () => {
                     {user?.displayName || "User"}
                     <span className="badge text-sm">New</span>
                   </p>
-                  <NavLink className="hover:text-[#d4af37]">My Artifacts</NavLink>
-                  <NavLink className="hover:text-[#d4af37]">Liked Artifacts</NavLink>
-                  <button onClick={handlelogout} className=" cursor-pointer hover:text-[#d4af37] flex items-center gap-1">
+                  <NavLink className="hover:text-[#d4af37]">
+                    My Artifacts
+                  </NavLink>
+                  <NavLink className="hover:text-[#d4af37]">
+                    Liked Artifacts
+                  </NavLink>
+                  <button
+                    onClick={handlelogout}
+                    className=" cursor-pointer hover:text-[#d4af37] flex items-center gap-1"
+                  >
                     Logout
                     <FiLogOut />
                   </button>
