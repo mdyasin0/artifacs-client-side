@@ -12,25 +12,25 @@ import "swiper/swiper-bundle.css";
 import { BiSolidLike } from "react-icons/bi";
 import { Link } from "react-router";
 
-
 const Home = () => {
-const [user, setuser] = useState([]);
- const [artifact, setArtifact] = useState(null);
- useEffect(() => {
-    fetch('http://localhost:3000/artifacts') 
+  const [user, setuser] = useState([]);
+  const [artifact, setArtifact] = useState(null);
+  useEffect(() => {
+    fetch("http://localhost:3000/artifacts")
       .then((res) => res.json())
       .then((data) => {
-         setArtifact(data);
-        setuser(data); 
+        setArtifact(data);
+        setuser(data);
       })
-      .catch((error) =>
-         console.log('Error fetching data:', error));
-  }, []); 
+      .catch((error) => console.log("Error fetching data:", error));
+  }, []);
 
   if (!artifact) {
-    return <p className="text-center flex h-screen justify-center items-center mt-10">
-      <span className="loading loading-spinner text-primary"></span>
-    </p>;
+    return (
+      <p className="text-center flex h-screen justify-center items-center mt-10">
+        <span className="loading loading-spinner text-primary"></span>
+      </p>
+    );
   }
 
   return (
@@ -152,31 +152,33 @@ const [user, setuser] = useState([]);
         </Swiper>
       </section>
 
-
-
       {/*Featured Artifacts*/}
       <h1 className="text-center font-bold text-4xl mb-10 text-[#2f2e2e]">
         Featured Artifacts
       </h1>
 
-          <div className="grid  mb-20 grid-cols-3 gap-10 max-w-6xl mx-auto">
-
-            {
-              user.map((user)=>(
-  <div key={user.id} className="bg-[#faf4ec]  border-[#ddd] p-10 rounded-lg ">
+      <div className="grid  mb-20 grid-cols-3 gap-10 max-w-6xl mx-auto">
+        {user.map((user) => (
+          <div
+            key={user._id}
+            className="bg-[#faf4ec]  border-[#ddd] p-10 rounded-lg "
+          >
             <img
-            className="max-w-56 rounded-lg mx-auto mb-3 " 
-            src={user.image} alt="" />
+              className="max-w-56 rounded-lg mx-auto mb-3 "
+              src={user.image}
+              alt=""
+            />
 
-
-            <h1 className="text-[#3a3a3a] text-2xl font-bold">
-              {user.title}
-              </h1>
+            <h1 className="text-[#3a3a3a] text-2xl font-bold">{user.title}</h1>
             <p>
-               <strong>description :</strong>{user.description} 
+              <strong>description :</strong>
+              {user.description}
             </p>
             <div className="flex justify-between mt-5">
-              <Link to={`/details/${user._id}`}  className="text-sm cursor-pointer font-bold bg-[#8b5e3c] py-1 px-3 rounded-lg hover:bg-[#a97442] ">
+              <Link
+                to={`/details/${user._id}`}
+                className="text-sm cursor-pointer font-bold bg-[#8b5e3c] py-1 px-3 rounded-lg hover:bg-[#a97442] "
+              >
                 View Details
               </Link>
               <div className="flex gap-1 items-center ">
@@ -184,10 +186,8 @@ const [user, setuser] = useState([]);
               </div>
             </div>
           </div>
-              ))
-            }
-          </div>
-
+        ))}
+      </div>
     </div>
   );
 };

@@ -20,7 +20,7 @@ const Home_Details = () => {
 
   return (
     <div>
-      <div className="bg-[#faf4ec] flex gap-5 max-w-6xl mx-auto my-10 border-[#ddd] p-10 rounded-lg ">
+      <div key={artifact._id} className="bg-[#faf4ec] flex gap-5 max-w-6xl mx-auto my-10 border-[#ddd] p-10 rounded-lg ">
         <img
           className="max-w-60 rounded-lg mx-auto mb-3 "
           src={artifact.image}

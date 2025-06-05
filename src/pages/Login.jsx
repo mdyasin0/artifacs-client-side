@@ -7,7 +7,20 @@ import { Authcontext } from "../Provider/Authprovider";
 
 const Login = () => {
   const [ShowPassword, setShowPassword] = useState(false);
-  const { login  } = useContext(Authcontext);
+  const { login , googleLogin  } = useContext(Authcontext);
+
+
+  const googlelogin = ()=>{
+    googleLogin ()
+    .then(result => {
+      const user = result.user;
+      alert("Logged in with Google successful");
+      console.log("Logged in with Google:", user);
+    })
+    .catch(error => {
+      console.error("Google login error:", error.message);
+    });
+  }
 const handalelogin = (e)=>{
   e.preventDefault();
 const form = e.target;
@@ -88,8 +101,9 @@ login(email,password)
             Login
           </button>
         </form>
-        <button
-          type="submit"
+        <button 
+         
+          onClick={ googlelogin}
           className="w-full flex gap-3 mt-5 items-center text-center justify-center bg-[#8b5e3c] text-[#f5f5f5] py-2 rounded-lg font-semibold hover:bg-[#a97442] transition-colors duration-300"
         >
           Login with <FcGoogle />

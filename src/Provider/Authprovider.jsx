@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../firebase/firebase.init';
  export const Authcontext = createContext();
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { onAuthStateChanged } from 'firebase/auth/cordova';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { onAuthStateChanged, GoogleAuthProvider } from 'firebase/auth'; //
 
 
 const auth = getAuth(app);
@@ -13,6 +13,12 @@ const [user,setuser] = useState(null);
 const register = (email,password)=>{
  return createUserWithEmailAndPassword(auth,email,password);
 }
+// google login
+
+const googleLogin = () => {
+  return signInWithPopup(auth, new GoogleAuthProvider());
+};
+
 
 // login
 
@@ -42,6 +48,7 @@ authtraker()
       register,
       logout,
       login,
+      googleLogin,
     };
     return <Authcontext value={Authdata}>
 {children}

@@ -7,7 +7,21 @@ import { Authcontext } from "../Provider/Authprovider";
 
 const Register = () => {
   const [ShowPassword, setShowPassword] = useState(false);
-   const { register , setuser } = useContext(Authcontext);
+   const { register , setuser , googleLogin} = useContext(Authcontext);
+   const googleregister =()=>{
+    googleLogin()
+    .then(result => {
+      const user = result.user;
+      alert("Register with Google successful");
+      console.log("Register with Google:", user);
+    })
+    .catch(error => {
+      console.error("Google login error:", error.message);
+    });
+
+
+
+   }
   const handaleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -126,7 +140,7 @@ const Register = () => {
         </form>
 
         <button
-          type="submit"
+          onClick={googleregister}
           className="w-full flex gap-3 mt-5 items-center text-center justify-center bg-[#8b5e3c] text-[#f5f5f5] py-2 rounded-lg font-semibold hover:bg-[#a97442] transition-colors duration-300"
         >
           Register with <FcGoogle />
