@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../firebase/firebase.init';
  export const Authcontext = createContext();
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signOut } from "firebase/auth";
 import { onAuthStateChanged } from 'firebase/auth/cordova';
 
 
@@ -12,6 +12,13 @@ const [user,setuser] = useState(null);
 
 const register = (email,password)=>{
  return createUserWithEmailAndPassword(auth,email,password);
+}
+
+// logout
+ 
+
+const logout =()=>{
+    return signOut(auth);
 }
 
 useEffect(()=>{
@@ -28,6 +35,7 @@ authtraker()
       user,
       setuser,
       register,
+      logout,
     };
     return <Authcontext value={Authdata}>
 {children}
