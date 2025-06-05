@@ -1,27 +1,30 @@
 import { Player } from "@lottiefiles/react-lottie-player";
-import React, {  useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link } from "react-router-dom"; 
 import { Authcontext } from "../Provider/Authprovider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const [ShowPassword, setShowPassword] = useState(false);
-   const { register , setuser , googleLogin} = useContext(Authcontext);
-   const googleregister =()=>{
+  const { register, setuser, googleLogin } = useContext(Authcontext);
+
+  
+  const googleregister = () => {
     googleLogin()
-    .then(result => {
-      const user = result.user;
-      alert("Register with Google successful");
-      console.log("Register with Google:", user);
-    })
-    .catch(error => {
-      console.error("Google login error:", error.message);
-    });
+      .then((result) => {
+        const user = result.user;
+        alert("Register with Google successful");
+        console.log("Register with Google:", user);
+        setuser(user);
+      })
+      .catch((error) => {
+        console.error("Google login error:", error.message);
+      });
+  };
 
-
-
-   }
+ 
   const handaleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -31,20 +34,26 @@ const Register = () => {
     const URL = form.url.value;
     const password = form.password.value;
 
-    console.log(name, email, URL, password);
-    register(email,password)
-    .then(res =>{
+    register(email, password)
+      .then((res) => {
+        const result = res.user;
 
-      alert("Register successful");
-      const result = res.user;
-
-      // console.log(result);
-      setuser(result);
-    })  .catch((error) => {
-  const errorMessage = error.message;
-    console.log(errorMessage);
-  });
-
+        
+        updateProfile(result, {
+          displayName: name,
+          photoURL: URL,
+        })
+          .then(() => {
+            setuser({ ...result, displayName: name, photoURL: URL });
+            alert("Register successful");
+          })
+          .catch((error) => {
+            console.log("Profile update error:", error.message);
+          });
+      })
+      .catch((error) => {
+        console.log("Registration error:", error.message);
+      });
   };
 
   return (
@@ -64,10 +73,7 @@ const Register = () => {
 
         <form onSubmit={handaleRegister} className="space-y-5">
           <div>
-            <label
-              htmlFor="name"
-              className="block text-[#3a3a3a] font-medium mb-1"
-            >
+            <label htmlFor="name" className="block text-[#3a3a3a] font-medium mb-1">
               Name
             </label>
             <input
@@ -75,14 +81,12 @@ const Register = () => {
               name="name"
               required
               className="w-full px-4 py-2 border border-[#ddd] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
-              placeholder="enter your name"
+              placeholder="Enter your name"
             />
           </div>
+
           <div>
-            <label
-              htmlFor="email"
-              className="block text-[#3a3a3a] font-medium mb-1"
-            >
+            <label htmlFor="email" className="block text-[#3a3a3a] font-medium mb-1">
               Email
             </label>
             <input
@@ -93,39 +97,34 @@ const Register = () => {
               placeholder="you@example.com"
             />
           </div>
+
           <div>
-            <label
-              htmlFor="url"
-              className="block text-[#3a3a3a] font-medium mb-1"
-            >
-              photo URL
+            <label htmlFor="url" className="block text-[#3a3a3a] font-medium mb-1">
+              Photo URL
             </label>
             <input
               type="url"
               name="url"
               required
               className="w-full px-4 py-2 border border-[#ddd] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
-              placeholder="enter your photo url"
+              placeholder="Enter your photo URL"
             />
           </div>
 
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-[#3a3a3a] font-medium mb-1"
-            >
+          <div className="relative">
+            <label htmlFor="password" className="block text-[#3a3a3a] font-medium mb-1">
               Password
             </label>
             <input
               type={ShowPassword ? "text" : "password"}
               name="password"
               required
-              className="w-full relative px-4 py-2 border border-[#ddd] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
+              className="w-full px-4 py-2 border border-[#ddd] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
               placeholder="Enter your password"
             />
             <span
               onClick={() => setShowPassword(!ShowPassword)}
-              className="absolute  mt-3 -ml-7 text-sm cursor-pointer"
+              className="absolute top-[38px] right-3 text-lg cursor-pointer"
             >
               {ShowPassword ? <FaRegEye /> : <FaRegEyeSlash />}
             </span>
@@ -141,15 +140,15 @@ const Register = () => {
 
         <button
           onClick={googleregister}
-          className="w-full flex gap-3 mt-5 items-center text-center justify-center bg-[#8b5e3c] text-[#f5f5f5] py-2 rounded-lg font-semibold hover:bg-[#a97442] transition-colors duration-300"
+          className="w-full flex gap-3 mt-5 items-center justify-center bg-[#8b5e3c] text-[#f5f5f5] py-2 rounded-lg font-semibold hover:bg-[#a97442] transition-colors duration-300"
         >
           Register with <FcGoogle />
         </button>
-        <p className="text-center text-sm  mt-5">
-          Already have an account ?
+
+        <p className="text-center text-sm mt-5">
+          Already have an account?{" "}
           <Link to="/login" className="hover:text-green-500">
-            {" "}
-            Login{" "}
+            Login
           </Link>
         </p>
       </div>

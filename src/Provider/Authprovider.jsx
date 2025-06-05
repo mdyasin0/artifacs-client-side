@@ -50,9 +50,9 @@ authtraker()
       login,
       googleLogin,
     };
-    return <Authcontext value={Authdata}>
+    return <Authcontext.Provider value={Authdata}>
 {children}
-    </Authcontext>;
+    </Authcontext.Provider>;
 };
 
 export default Authprovider;
