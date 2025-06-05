@@ -34,6 +34,26 @@ const Register = () => {
     const URL = form.url.value;
     const password = form.password.value;
 
+
+    const uppercase = /[A-Z]/.test(password);
+  const lowercase = /[a-z]/.test(password);
+  const lengthValid = password.length >= 6;
+
+  if (!uppercase) {
+    alert("Password must have at least one UPPERCASE letter");
+    return;
+  }
+
+  if (!lowercase) {
+    alert("Password must have at least one lowercase letter");
+    return;
+  }
+
+  if (!lengthValid) {
+    alert("Password must be at least 6 characters long");
+    return;
+  }
+
     register(email, password)
       .then((res) => {
         const result = res.user;
