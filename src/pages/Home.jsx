@@ -15,16 +15,23 @@ import { Link } from "react-router";
 
 const Home = () => {
 const [user, setuser] = useState([]);
+ const [artifact, setArtifact] = useState(null);
  useEffect(() => {
-    fetch('https://raw.githubusercontent.com/mdyasin0/assignment-11-json-data/refs/heads/main/Histrical.json') 
+    fetch('http://localhost:3000/artifacts') 
       .then((res) => res.json())
       .then((data) => {
+         setArtifact(data);
         setuser(data); 
       })
       .catch((error) =>
          console.log('Error fetching data:', error));
   }, []); 
 
+  if (!artifact) {
+    return <p className="text-center flex h-screen justify-center items-center mt-10">
+      <span className="loading loading-spinner text-primary"></span>
+    </p>;
+  }
 
   return (
     <div>
@@ -169,7 +176,7 @@ const [user, setuser] = useState([]);
                <strong>description :</strong>{user.description} 
             </p>
             <div className="flex justify-between mt-5">
-              <Link to={`/details/${user.id}`}  className="text-sm cursor-pointer font-bold bg-[#8b5e3c] py-1 px-3 rounded-lg hover:bg-[#a97442] ">
+              <Link to={`/details/${user._id}`}  className="text-sm cursor-pointer font-bold bg-[#8b5e3c] py-1 px-3 rounded-lg hover:bg-[#a97442] ">
                 View Details
               </Link>
               <div className="flex gap-1 items-center ">
@@ -179,7 +186,6 @@ const [user, setuser] = useState([]);
           </div>
               ))
             }
-          
           </div>
 
     </div>

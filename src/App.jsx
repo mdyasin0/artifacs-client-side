@@ -11,6 +11,7 @@ function App() {
   return (
     <>
 <Navbar></Navbar>
+<home_Details></home_Details>
 <Outlet></Outlet>
 <Footer></Footer>
     </>

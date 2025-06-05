@@ -1,13 +1,13 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router';
 import Home from './Home';
-import home_Details from './home_Details';
 import App from '../App';
 import Login from './Login';
 import Register from './Register';
 import TermsOfUse from './TermsOfUse';
 import PrivacyPolicy from './PrivacyPolicy';
 import CookiePolicy from './CookiePolicy';
+import Home_Details from './home_Details';
 
 
 
@@ -29,7 +29,7 @@ import CookiePolicy from './CookiePolicy';
         },
         {
             path: "/details/:id",
-            Component : home_Details,
+            Component : Home_Details,
         },
         {
           path: "/Home",
