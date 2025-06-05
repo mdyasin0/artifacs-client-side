@@ -11,16 +11,18 @@ import {
 import "swiper/swiper-bundle.css";
 import { BiSolidLike } from "react-icons/bi";
 import { Link } from "react-router";
+import HistoricalTimeline from "./Historical_Timeline";
 
 const Home = () => {
-  const [user, setuser] = useState([]);
   const [artifact, setArtifact] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+
   useEffect(() => {
     fetch("http://localhost:3000/artifacts")
       .then((res) => res.json())
       .then((data) => {
-        setArtifact(data);
-        setuser(data);
+        const sortedData = data.sort((a, b) => b.total_like - a.total_like);
+        setArtifact(sortedData);
       })
       .catch((error) => console.log("Error fetching data:", error));
   }, []);
@@ -38,7 +40,6 @@ const Home = () => {
       {/* Hero Slider */}
       <section className="pt-20 pb-20 ">
         <Swiper
-          className=""
           modules={[
             Navigation,
             Pagination,
@@ -56,6 +57,7 @@ const Home = () => {
           autoplay={{ delay: 3000, disableOnInteraction: false }}
         >
           {[
+            // Slide 1
             <div
               className="hero min-h-screen"
               style={{ backgroundColor: "#faf4ec" }}
@@ -65,7 +67,6 @@ const Home = () => {
                   src="https://i.ibb.co/BV5nnH8Y/The-Sultanganj-Buddha.jpg"
                   className="max-w-sm mx-auto rounded-lg shadow-2xl border border-[#ddd]"
                 />
-
                 <div className="text-start">
                   <h1 className="text-5xl font-bold text-[#2f2e2e]">
                     Sultanganj Buddha!
@@ -77,6 +78,7 @@ const Home = () => {
                 </div>
               </div>
             </div>,
+            // Slide 2
             <div
               className="hero min-h-screen"
               style={{ backgroundColor: "#faf4ec" }}
@@ -86,10 +88,9 @@ const Home = () => {
                   src="https://i.ibb.co/WNMdxqNP/51714-Terracota-Army.jpg"
                   className="max-w-sm mx-auto rounded-lg shadow-2xl border border-[#ddd]"
                 />
-
                 <div className="text-start">
                   <h1 className="text-5xl font-bold text-[#2f2e2e]">
-                    Terracotta Army Soldier !
+                    Terracotta Army Soldier!
                   </h1>
                   <p className="py-6 text-[#7a6a53]">
                     These life-sized statues were buried with China's first
@@ -98,6 +99,7 @@ const Home = () => {
                 </div>
               </div>
             </div>,
+            // Slide 3
             <div
               className="hero min-h-screen"
               style={{ backgroundColor: "#faf4ec" }}
@@ -107,10 +109,9 @@ const Home = () => {
                   src="https://i.ibb.co/39h8cp5r/Rosetta-Stone.jpg"
                   className="max-w-sm mx-auto rounded-lg shadow-2xl border border-[#ddd]"
                 />
-
                 <div className="text-start">
                   <h1 className="text-5xl font-bold text-[#2f2e2e]">
-                    Rosetta Stone !
+                    Rosetta Stone!
                   </h1>
                   <p className="py-6 text-[#7a6a53]">
                     The Rosetta Stone is a granodiorite stele inscribed with a
@@ -120,6 +121,7 @@ const Home = () => {
                 </div>
               </div>
             </div>,
+            // Slide 4
             <div
               className="hero min-h-screen"
               style={{ backgroundColor: "#faf4ec" }}
@@ -129,10 +131,9 @@ const Home = () => {
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/1200px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg"
                   className="max-w-sm mx-auto rounded-lg shadow-2xl border border-[#ddd]"
                 />
-
                 <div className="text-start">
                   <h1 className="text-5xl font-bold text-[#2f2e2e]">
-                    Mona Lisa !
+                    Mona Lisa!
                   </h1>
                   <p className="py-6 text-[#7a6a53]">
                     Portrait by Leonardo da Vinci, believed to depict Lisa
@@ -144,7 +145,7 @@ const Home = () => {
             </div>,
           ].map((div, index) => (
             <SwiperSlide key={index}>
-              <div className="w-6/12  sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[600px] mx-auto rounded-2xl object-cover">
+              <div className="w-6/12 sm:h-[60vh] md:h-[70vh] lg:h-[80vh] xl:h-[600px] mx-auto rounded-2xl object-cover">
                 {div}
               </div>
             </SwiperSlide>
@@ -152,42 +153,67 @@ const Home = () => {
         </Swiper>
       </section>
 
-      {/*Featured Artifacts*/}
+      {/* Featured Artifacts */}
       <h1 className="text-center font-bold text-4xl mb-10 text-[#2f2e2e]">
         Featured Artifacts
       </h1>
 
-      <div className="grid  mb-20 grid-cols-3 gap-10 max-w-6xl mx-auto">
-        {user.map((user) => (
+      <div className="grid mb-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        {(showAll ? artifact : artifact.slice(0, 6)).map((user) => (
           <div
             key={user._id}
-            className="bg-[#faf4ec]  border-[#ddd] p-10 rounded-lg "
+            className="bg-[#faf4ec] border-[#ddd] p-10 rounded-lg"
           >
             <img
-              className="max-w-56 rounded-lg mx-auto mb-3 "
+              className="max-w-56 rounded-lg mx-auto mb-3"
               src={user.image}
               alt=""
             />
-
             <h1 className="text-[#3a3a3a] text-2xl font-bold">{user.title}</h1>
             <p>
-              <strong>description :</strong>
-              {user.description}
+              <strong>Description :</strong> {user.description}
             </p>
             <div className="flex justify-between mt-5">
               <Link
                 to={`/details/${user._id}`}
-                className="text-sm cursor-pointer font-bold bg-[#8b5e3c] py-1 px-3 rounded-lg hover:bg-[#a97442] "
+                className="text-sm cursor-pointer font-bold bg-[#8b5e3c] py-1 px-3 rounded-lg hover:bg-[#a97442]"
               >
                 View Details
               </Link>
-              <div className="flex gap-1 items-center ">
+              <div className="flex gap-1 items-center">
                 <BiSolidLike /> {user.total_like}
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Show All / Show Less Button */}
+      <div className="text-center mb-20">
+        <button
+          onClick={() => setShowAll(!showAll)}
+          className="bg-[#8b5e3c] hover:bg-[#a97442] text-white font-bold py-2 px-5 rounded-lg transition duration-300"
+        >
+          {showAll ? "Show Less" : "Show All"}
+        </button>
+      </div>
+
+      {/* Timeline Section */}
+      <HistoricalTimeline />
+
+      {/* Artifact Care Tips Section */}
+      <section className="bg-indigo-50 p-8 rounded-lg shadow-md">
+        <h2 className="text-4xl font-bold mb-8 text-center text-indigo-900">
+          Artifact Care Tips
+        </h2>
+        <ul className="list-disc list-inside max-w-xl mx-auto space-y-4 text-lg text-indigo-900">
+          <li>Avoid direct sunlight to prevent fading and damage.</li>
+          <li>Maintain 40-60% relative humidity to avoid mold growth.</li>
+          <li>Always handle artifacts with gloves to protect from oils.</li>
+          <li>Dust artifacts regularly using soft brushes.</li>
+          <li>Store artifacts in acid-free boxes or display cases.</li>
+        </ul>
+      </section>
     </div>
   );
 };

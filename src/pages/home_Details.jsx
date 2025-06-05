@@ -4,6 +4,7 @@ import { BiSolidLike } from "react-icons/bi";
 import { useParams } from "react-router";
 
 const Home_Details = () => {
+  
   const { id } = useParams();
   const [artifact, setArtifact] = useState(null);
   useEffect(() => {
