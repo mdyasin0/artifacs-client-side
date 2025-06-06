@@ -61,6 +61,37 @@ export default function AddArtifactForm() {
   .then((data) => {
     if (data.success) {
       alert("Artifact added successfully");
+
+
+      // for form reset
+      setFormData({
+        title: "",
+        image: "",
+        timePeriod: "",
+        origin: "",
+        material: "",
+        dimensions: "",
+        height: "",
+        width: "",
+        weight: "",
+        condition: "",
+        currentLocation: "",
+        estimatedValue: "",
+        historicalSignificance: "",
+        description: "",
+        discoveredBy: "",
+        dateOfDiscovery: "",
+        preservationStatus: "",
+        artifactType: "",
+        historicalContext: "",
+        liked_by: [],
+        email: user?.email || "",
+        adderName: user?.displayName || "",
+      });
+
+
+
+
     } else {
       alert("Error", data.message, "error");
     }
