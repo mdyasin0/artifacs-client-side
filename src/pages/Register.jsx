@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom"; 
 import { Authcontext } from "../Provider/Authprovider";
 import { updateProfile } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [ShowPassword, setShowPassword] = useState(false);
@@ -17,12 +18,12 @@ const Register = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
-        alert("Register with Google successful");
-        console.log("Register with Google:", user);
+        toast.success("Register with Google successful");
+        // console.log("Register with Google:", user);
         setuser(user);
       })
       .catch((error) => {
-        console.error("Google login error:", error.message);
+        toast.error("Google login error:", error.message);
       });
   };
 
@@ -42,17 +43,17 @@ const Register = () => {
   const lengthValid = password.length >= 6;
 
   if (!uppercase) {
-    alert("Password must have at least one UPPERCASE letter");
+    toast.warn("Password must have at least one UPPERCASE letter");
     return;
   }
 
   if (!lowercase) {
-    alert("Password must have at least one lowercase letter");
+    toast.warn("Password must have at least one lowercase letter");
     return;
   }
 
   if (!lengthValid) {
-    alert("Password must be at least 6 characters long");
+    toast.warn("Password must be at least 6 characters long");
     return;
   }
 
@@ -67,14 +68,14 @@ const Register = () => {
         })
           .then(() => {
             setuser({ ...result, displayName: name, photoURL: URL });
-            alert("Register successful");
+            toast.success("Register successful");
           })
           .catch((error) => {
-            console.log("Profile update error:", error.message);
+            toast.error("Profile update error:", error.message);
           });
       })
       .catch((error) => {
-        console.log("Registration error:", error.message);
+        toast.error("Registration error:", error.message);
       });
   };
 

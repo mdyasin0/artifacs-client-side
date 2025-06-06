@@ -4,6 +4,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Links, useLocation, useNavigate } from "react-router";
 import { Authcontext } from "../Provider/Authprovider";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [ShowPassword, setShowPassword] = useState(false);
@@ -18,12 +19,12 @@ useEffect(() => {
     googleLogin ()
     .then(result => {
       const user = result.user;
-      alert("Logged in with Google successful");
+      toast.success("Logged in with Google successful");
       navigate(from, { replace: true });
-      console.log("Logged in with Google:", user);
+      // console.log("Logged in with Google:", user);
     })
     .catch(error => {
-      console.error("Google login error:", error.message);
+     toast.error("Google login error:", error.message);
     });
   }
 const handalelogin = (e)=>{
@@ -31,18 +32,19 @@ const handalelogin = (e)=>{
 const form = e.target;
 const email = form.email.value;
 const password = form.password.value;
-console.log(email,password);
+// console.log(email,password);
 login(email,password)
   .then((userCredential) => {
     // Signed in 
-    alert("login successful");
+    toast.success("login successful");
     const user = userCredential.user;
-    console.log(user);
+    // 
+    // .log(user);
   })
   .catch((error) => {
    
     const errorMessage = error.message;
-    console.log(errorMessage);
+   toast.error(errorMessage);
   });
 }
   return (

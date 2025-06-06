@@ -4,6 +4,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import { Link } from "react-router-dom"; 
 import { BiSolidLike } from "react-icons/bi";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const MyArtifacts = () => {
   const { user } = useContext(Authcontext);
@@ -40,7 +41,7 @@ useEffect(() => {
           })
           .catch((err) => {
             Swal.fire("Error", "Failed to delete artifact", "error");
-            console.error(err);
+          toast.error(err);
           });
       }
     });

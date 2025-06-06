@@ -37,7 +37,7 @@ useEffect(()=>{
     const authtraker =  onAuthStateChanged(auth,(currentuser)=>{
     setuser(currentuser);
     setLoading(false);
-    console.log(currentuser);
+    // console.log(currentuser);
     });
     return ()=>{
 authtraker()

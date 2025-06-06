@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { BiSolidLike } from "react-icons/bi";
 import { useParams } from "react-router";
 import { Authcontext } from "../Provider/Authprovider";
+import { toast } from "react-toastify/unstyled";
 
 const Home_Details = () => {
   const { user } = useContext(Authcontext);
@@ -23,7 +24,7 @@ const Home_Details = () => {
 
   const handleLikeToggle = () => {
     if (!user) {
-      alert("Please login first to like this artifact.");
+      toast.warn("Please login first to like this artifact.");
       return;
     }
 

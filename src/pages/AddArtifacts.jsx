@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../Provider/Authprovider";
+import { toast } from "react-toastify/unstyled";
 
 const artifactTypes = [
   "Tools",
@@ -62,7 +63,7 @@ useEffect(() => {
   .then((res) => res.json())
   .then((data) => {
     if (data.success) {
-      alert("Artifact added successfully");
+      toast.success("Artifact added successfully");
 
 
       // for form reset
@@ -95,15 +96,15 @@ useEffect(() => {
 
 
     } else {
-      alert("Error", data.message, "error");
+      toast.error("Error", data.message, "error");
     }
   })
   .catch((error) => {
-    console.error("Error submitting form:", error);
-    alert("Error", "Failed to submit the form", "error");
+    toast.error("Error submitting form:", error);
+    toast.error("Error", "Failed to submit the form", "error");
   });
 
-    console.log("Submitted data:", formData);
+    // console.log("Submitted data:", formData);
   };
 
   return (
