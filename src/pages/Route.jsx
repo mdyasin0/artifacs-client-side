@@ -13,6 +13,7 @@ import AddArtifactForm from "./AddArtifacts";
 import PrivateRoute from "./Privateroute";
 import LikedArtifacts from "./LikedArtifacts";
 import MyArtifacts from "./MyArtifacts";
+import Update from "./update";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,11 @@ const router = createBrowserRouter([
               <MyArtifacts/>
             </PrivateRoute>
         ),
+      }
+      ,
+      {
+        path : "/update/:id" ,
+        Component : Update ,
       }
       ,
       {
