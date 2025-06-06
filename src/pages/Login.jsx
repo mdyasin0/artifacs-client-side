@@ -2,19 +2,22 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import React, { useContext, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-import { Link, Links } from "react-router";
+import { Link, Links, useLocation, useNavigate } from "react-router";
 import { Authcontext } from "../Provider/Authprovider";
 
 const Login = () => {
   const [ShowPassword, setShowPassword] = useState(false);
   const { login , googleLogin  } = useContext(Authcontext);
-
+const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const googlelogin = ()=>{
     googleLogin ()
     .then(result => {
       const user = result.user;
       alert("Logged in with Google successful");
+      navigate(from, { replace: true });
       console.log("Logged in with Google:", user);
     })
     .catch(error => {

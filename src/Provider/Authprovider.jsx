@@ -8,6 +8,7 @@ import { onAuthStateChanged, GoogleAuthProvider } from 'firebase/auth'; //
 const auth = getAuth(app);
 export const Authprovider = ({children}) => {
 const [user,setuser] = useState(null);
+  const [loading, setLoading] = useState(true);
 // register user
 
 const register = (email,password)=>{
@@ -35,6 +36,7 @@ const logout =()=>{
 useEffect(()=>{
     const authtraker =  onAuthStateChanged(auth,(currentuser)=>{
     setuser(currentuser);
+    setLoading(false);
     console.log(currentuser);
     });
     return ()=>{
@@ -49,6 +51,7 @@ authtraker()
       logout,
       login,
       googleLogin,
+        loading,
     };
     return <Authcontext.Provider value={Authdata}>
 {children}
