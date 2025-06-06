@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Authcontext } from '../Provider/Authprovider';
 import { Link } from 'react-router';
 import { BiSolidLike } from 'react-icons/bi';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 const LikedArtifacts = () => {
     const { user} = useContext(Authcontext);
@@ -26,8 +27,25 @@ const LikedArtifacts = () => {
   <h1 className="text-center mt-10 font-bold text-4xl mb-10 text-[#2f2e2e]">
     Liked Artifacts
   </h1>
+{
+     likedata.length === 0 ?   
+     
+     <div>
+          <p className="text-center text-gray-600 text-lg mb-10">
+       You haven't liked any artifacts yet. 
+      </p> 
+        <Player
+                autoplay
+                loop
+                src="/likeloder.json"
+                style={{ height: "300px", width: "300px" }}
+              ></Player>
+     </div>
+    
+      :
+      <div>
 
-  <div className="grid mb-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+<div className="grid mb-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
     {(showAll ? likedata : likedata.slice(0, 6)).map((user) => (
       <div
         key={user._id}
@@ -68,6 +86,12 @@ const LikedArtifacts = () => {
       {showAll ? "Show Less" : "Show All"}
     </Link>
   </div>
+
+
+      </div>
+      
+}
+  
 </>
 
 

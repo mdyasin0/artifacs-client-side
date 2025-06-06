@@ -12,6 +12,7 @@ import AllArtifacts from "./AllArtifacts";
 import AddArtifactForm from "./AddArtifacts";
 import PrivateRoute from "./Privateroute";
 import LikedArtifacts from "./LikedArtifacts";
+import MyArtifacts from "./MyArtifacts";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,16 @@ const router = createBrowserRouter([
               </PrivateRoute>
             ),
       },
+      
+      {
+        path: "/MyArtifacts",
+        element : (
+            <PrivateRoute>
+              <MyArtifacts/>
+            </PrivateRoute>
+        ),
+      }
+      ,
       {
         path: "/login",
         Component: Login,

@@ -84,7 +84,7 @@ const Navbar = () => {
                     {user?.displayName || "User"}
                     <span className="badge text-sm">New</span>
                   </p>
-                  <NavLink className="hover:text-[#d4af37]">
+                  <NavLink to="/MyArtifacts" className="hover:text-[#d4af37]">
                     My Artifacts
                   </NavLink>
                   <NavLink to="/LikedArtifacts" className="hover:text-[#d4af37]">
