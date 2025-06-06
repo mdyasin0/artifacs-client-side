@@ -17,7 +17,9 @@ const ArtifactCard = ({ artifact, user }) => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
+        
       },
+       credentials:'include',
       body: JSON.stringify({ email: user.email })
     })
       .then(res => res.json())

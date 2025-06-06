@@ -5,7 +5,9 @@ const HistoricalTimeline = () => {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:3000/historical_timeline")
+    fetch("http://localhost:3000/historical_timeline",{
+      credentials:'include'
+    })
       .then((res) => res.json())
       .then((data) => setTimeline(data));
   }, []);

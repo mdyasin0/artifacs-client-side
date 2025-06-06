@@ -54,10 +54,13 @@ useEffect(() => {
   const handleSubmit = (e) => {
     e.preventDefault();
    fetch("http://localhost:3000/addartifacts", {
+    
   method: "POST",
   headers: {
     "Content-Type": "application/json",
+   
   },
+   credentials:'include',
   body: JSON.stringify(formData),
 })
   .then((res) => res.json())

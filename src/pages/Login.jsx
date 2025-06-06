@@ -38,8 +38,8 @@ login(email,password)
     // Signed in 
     toast.success("login successful");
     const user = userCredential.user;
-    // 
-    // .log(user);
+
+    // consle.log(user);
   })
   .catch((error) => {
    

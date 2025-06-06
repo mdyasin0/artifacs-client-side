@@ -14,7 +14,9 @@ useEffect(() => {
 
 
     useEffect(() => {
-  fetch("http://localhost:3000/artifacts")
+  fetch("http://localhost:3000/artifacts",{
+    credentials:'include'
+  })
     .then((res) => res.json())
     .then((data) => {
       if (user?.email) {

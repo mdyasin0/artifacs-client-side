@@ -27,6 +27,7 @@ useEffect(() => {
       if (result.isConfirmed) {
         fetch(`http://localhost:3000/delete/${id}`, {
           method: "DELETE",
+          credentials:'include'
         })
           .then((res) => res.json())
           .then((data) => {
@@ -48,7 +49,9 @@ useEffect(() => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/artifacts")
+    fetch("http://localhost:3000/artifacts",{
+      credentials:'include'
+    })
       .then((res) => res.json())
       .then((data) => {
         if (user?.email) {

@@ -13,7 +13,9 @@ const Home_Details = () => {
   const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/artifacts/${id}`)
+    fetch(`http://localhost:3000/artifacts/${id}`,{
+      credentials:'include'
+    })
       .then((res) => res.json())
       .then((data) => {
         setArtifact(data);
@@ -32,7 +34,9 @@ const Home_Details = () => {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
+        
       },
+       credentials:'include',
       body: JSON.stringify({ email: user.email })
     })
       .then((res) => res.json())

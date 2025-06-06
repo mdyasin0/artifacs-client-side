@@ -46,7 +46,9 @@ const Update = () => {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:3000/update/${id}`)
+    fetch(`http://localhost:3000/update/${id}`,{
+      credentials:'include'
+    })
       .then((res) => res.json())
       .then((data) => {
         setFormData({
@@ -87,6 +89,7 @@ const Update = () => {
     const res = await fetch(`http://localhost:3000/update/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
+       credentials:'include',
       body: JSON.stringify(formData),
     });
 

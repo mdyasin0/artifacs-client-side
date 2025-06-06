@@ -3,6 +3,7 @@ import app from '../firebase/firebase.init';
  export const Authcontext = createContext();
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { onAuthStateChanged, GoogleAuthProvider } from 'firebase/auth'; //
+import axios from 'axios';
 
 
 const auth = getAuth(app);
@@ -37,6 +38,19 @@ useEffect(()=>{
     const authtraker =  onAuthStateChanged(auth,(currentuser)=>{
     setuser(currentuser);
     setLoading(false);
+     if(currentuser?. email){
+        const userdata = {email:currentuser.email};
+        axios.post('http://localhost:3000/jwt',userdata,{
+            withCredentials:true
+        })
+        .then(res=>{
+            console.log( 'token after jwt' , res.data)
+        })
+        .catch(error=>console.log(error))
+
+     }
+     console.log('user in auth state change', currentuser);
+
     // console.log(currentuser);
     });
     return ()=>{

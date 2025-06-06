@@ -10,7 +10,9 @@ useEffect(() => {
     document.title = "All Artifacts | Legacy Vault";
   }, []);
   useEffect(() => {
-    fetch("http://localhost:3000/artifacts")
+    fetch("http://localhost:3000/artifacts",{
+      credentials:'include'
+    })
       .then((res) => res.json())
       .then((data) => {
         const sortedData = data.sort(
