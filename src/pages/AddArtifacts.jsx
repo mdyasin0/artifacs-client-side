@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../Provider/Authprovider";
 
 const artifactTypes = [
@@ -17,7 +17,9 @@ const artifactTypes = [
 export default function AddArtifactForm() {
   const { user } = useContext(Authcontext);
   // console.log("form check",user);
-
+useEffect(() => {
+    document.title = "Add Artifacts | Legacy Vault";
+  }, []);
   const [formData, setFormData] = useState({
     title: "",
     image: "",

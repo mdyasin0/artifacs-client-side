@@ -8,6 +8,11 @@ const LikedArtifacts = () => {
     const { user} = useContext(Authcontext);
     const [likedata,setlikedata] =useState([]);
      const [showAll, setShowAll] = useState(false);
+useEffect(() => {
+    document.title = "Liked Artifacts | Legacy Vault";
+  }, []);
+
+
     useEffect(() => {
   fetch("http://localhost:3000/artifacts")
     .then((res) => res.json())

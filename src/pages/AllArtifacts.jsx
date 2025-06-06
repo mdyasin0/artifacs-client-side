@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 const ArtifactCard = () => {
   const [artifact, setArtifact] = useState(null);
   const [showAll, setShowAll] = useState(false);
-
+useEffect(() => {
+    document.title = "All Artifacts | Legacy Vault";
+  }, []);
   useEffect(() => {
     fetch("http://localhost:3000/artifacts")
       .then((res) => res.json())

@@ -9,7 +9,9 @@ const MyArtifacts = () => {
   const { user } = useContext(Authcontext);
   const [likedata, setlikedata] = useState([]);
   const [showAll, setShowAll] = useState(false);
-
+useEffect(() => {
+    document.title = "My Artifacts | Legacy Vault";
+  }, []);
   // delete oparetion
   const deletehandale = (id) => {
     Swal.fire({

@@ -1,5 +1,5 @@
 import { Player } from "@lottiefiles/react-lottie-player";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Links, useLocation, useNavigate } from "react-router";
@@ -11,7 +11,9 @@ const Login = () => {
 const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
+useEffect(() => {
+    document.title = "Login page | Legacy Vault";
+  }, []);
   const googlelogin = ()=>{
     googleLogin ()
     .then(result => {

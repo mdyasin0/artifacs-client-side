@@ -17,7 +17,9 @@ import ArtifactCard from "./like";
 const Home = () => {
   const [artifact, setArtifact] = useState(null);
   const [showAll, setShowAll] = useState(false);
-
+useEffect(() => {
+    document.title = "Home | Legacy Vault";
+  }, []);
   useEffect(() => {
     fetch("http://localhost:3000/artifacts")
       .then((res) => res.json())

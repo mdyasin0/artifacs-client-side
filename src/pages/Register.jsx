@@ -1,5 +1,5 @@
 import { Player } from "@lottiefiles/react-lottie-player";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom"; 
@@ -10,7 +10,9 @@ const Register = () => {
   const [ShowPassword, setShowPassword] = useState(false);
   const { register, setuser, googleLogin } = useContext(Authcontext);
 
-  
+  useEffect(() => {
+      document.title = "Register page | Legacy Vault";
+    }, []);
   const googleregister = () => {
     googleLogin()
       .then((result) => {
