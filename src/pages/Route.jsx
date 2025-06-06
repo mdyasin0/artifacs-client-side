@@ -14,6 +14,8 @@ import PrivateRoute from "./Privateroute";
 import LikedArtifacts from "./LikedArtifacts";
 import MyArtifacts from "./MyArtifacts";
 import Update from "./update";
+import Error from "./Error.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -94,7 +96,12 @@ const router = createBrowserRouter([
         Component: CookiePolicy,
       },
     ],
+    
   },
+  {
+        path: "*",
+        element: <Error/>,
+      },
 ]);
 
 export default router;
