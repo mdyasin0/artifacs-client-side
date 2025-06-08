@@ -16,7 +16,6 @@ import MyArtifacts from "./MyArtifacts";
 import Update from "./update";
 import Error from "./Error.jsx";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,28 +52,30 @@ const router = createBrowserRouter([
         ),
       },
       {
-            path:"/LikedArtifacts",
-            element :(
-              <PrivateRoute>
-                <LikedArtifacts/>
-              </PrivateRoute>
-            ),
+        path: "/LikedArtifacts",
+        element: (
+          <PrivateRoute>
+            <LikedArtifacts />
+          </PrivateRoute>
+        ),
       },
-      
+
       {
         path: "/MyArtifacts",
-        element : (
-            <PrivateRoute>
-              <MyArtifacts/>
-            </PrivateRoute>
+        element: (
+          <PrivateRoute>
+            <MyArtifacts />
+          </PrivateRoute>
         ),
-      }
-      ,
+      },
       {
-        path : "/update/:id" ,
-        Component : Update ,
-      }
-      ,
+        path: "/update/:id",
+        element: (
+          <PrivateRoute>
+            <Update />
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/login",
         Component: Login,
@@ -96,12 +97,11 @@ const router = createBrowserRouter([
         Component: CookiePolicy,
       },
     ],
-    
   },
   {
-        path: "*",
-        element: <Error/>,
-      },
+    path: "*",
+    element: <Error />,
+  },
 ]);
 
 export default router;

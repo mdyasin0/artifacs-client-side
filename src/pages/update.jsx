@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../Provider/Authprovider";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 
 const artifactTypes = [
@@ -19,7 +19,11 @@ const artifactTypes = [
 const Update = () => {
   const { user } = useContext(Authcontext);
   const { id } = useParams();
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    document.title = "Update artifact | Legacy Vault";
+  }, []);
   const [formData, setFormData] = useState({
     title: "",
     image: "",
@@ -46,8 +50,8 @@ const Update = () => {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:3000/update/${id}`,{
-      credentials:'include'
+    fetch(`http://localhost:3000/update/${id}`, {
+      credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => {
@@ -89,7 +93,7 @@ const Update = () => {
     const res = await fetch(`http://localhost:3000/update/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-       credentials:'include',
+      credentials: "include",
       body: JSON.stringify(formData),
     });
 
@@ -103,6 +107,7 @@ const Update = () => {
         timer: 2000,
         showConfirmButton: false,
       });
+      navigate("/MyArtifacts");
     } else {
       Swal.fire({
         icon: "error",

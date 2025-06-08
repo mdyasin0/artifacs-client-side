@@ -16,21 +16,20 @@ const ArtifactCard = ({ artifact, user }) => {
     fetch(`http://localhost:3000/artifacts/like/${artifact._id}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json"
-        
+        "Content-Type": "application/json",
       },
-       credentials:'include',
-      body: JSON.stringify({ email: user.email })
+      credentials: "include",
+      body: JSON.stringify({ email: user.email }),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.modifiedCount > 0) {
           if (liked) {
             setLiked(false);
-            setLikeCount(prev => prev - 1);
+            setLikeCount((prev) => prev - 1);
           } else {
             setLiked(true);
-            setLikeCount(prev => prev + 1);
+            setLikeCount((prev) => prev + 1);
           }
         }
       });

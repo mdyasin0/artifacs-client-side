@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../Provider/Authprovider";
 import { Player } from "@lottiefiles/react-lottie-player";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom";
 import { BiSolidLike } from "react-icons/bi";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
@@ -10,7 +10,8 @@ const MyArtifacts = () => {
   const { user } = useContext(Authcontext);
   const [likedata, setlikedata] = useState([]);
   const [showAll, setShowAll] = useState(false);
-useEffect(() => {
+  const navigate = useNavigate();
+  useEffect(() => {
     document.title = "My Artifacts | Legacy Vault";
   }, []);
   // delete oparetion
@@ -27,7 +28,7 @@ useEffect(() => {
       if (result.isConfirmed) {
         fetch(`http://localhost:3000/delete/${id}`, {
           method: "DELETE",
-          credentials:'include'
+          credentials: "include",
         })
           .then((res) => res.json())
           .then((data) => {
@@ -36,21 +37,23 @@ useEffect(() => {
 
               const updatedData = likedata.filter((item) => item._id !== id);
               setlikedata(updatedData);
+
+              navigate("/AllArtifacts");
             } else {
               Swal.fire("Error", data.message, "error");
             }
           })
           .catch((err) => {
             Swal.fire("Error", "Failed to delete artifact", "error");
-          toast.error(err);
+            toast.error(err);
           });
       }
     });
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/artifacts",{
-      credentials:'include'
+    fetch("http://localhost:3000/artifacts", {
+      credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => {

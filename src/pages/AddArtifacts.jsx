@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../Provider/Authprovider";
-import { toast } from "react-toastify/unstyled";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const artifactTypes = [
   "Tools",
@@ -18,7 +19,8 @@ const artifactTypes = [
 export default function AddArtifactForm() {
   const { user } = useContext(Authcontext);
   // console.log("form check",user);
-useEffect(() => {
+  const navigate = useNavigate();
+  useEffect(() => {
     document.title = "Add Artifacts | Legacy Vault";
   }, []);
   const [formData, setFormData] = useState({
@@ -43,7 +45,7 @@ useEffect(() => {
     historicalContext: "",
     liked_by: [],
     email: user?.email || "",
-    adderName: user?.displayName|| "",  
+    adderName: user?.displayName || "",
   });
 
   const handleChange = (e) => {
@@ -53,59 +55,53 @@ useEffect(() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   fetch("http://localhost:3000/addartifacts", {
-    
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-   
-  },
-   credentials:'include',
-  body: JSON.stringify(formData),
-})
-  .then((res) => res.json())
-  .then((data) => {
-    if (data.success) {
-      toast.success("Artifact added successfully");
+    fetch("http://localhost:3000/addartifacts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          toast.success("Artifact added successfully");
+          navigate("/MyArtifacts");
 
-
-      // for form reset
-      setFormData({
-        title: "",
-        image: "",
-        timePeriod: "",
-        origin: "",
-        material: "",
-        dimensions: "",
-        height: "",
-        width: "",
-        weight: "",
-        condition: "",
-        currentLocation: "",
-        estimatedValue: "",
-        historicalSignificance: "",
-        description: "",
-        discoveredBy: "",
-        dateOfDiscovery: "",
-        preservationStatus: "",
-        artifactType: "",
-        historicalContext: "",
-        liked_by: [],
-        email: user?.email || "",
-        adderName: user?.displayName || "",
+          // for form reset
+          setFormData({
+            title: "",
+            image: "",
+            timePeriod: "",
+            origin: "",
+            material: "",
+            dimensions: "",
+            height: "",
+            width: "",
+            weight: "",
+            condition: "",
+            currentLocation: "",
+            estimatedValue: "",
+            historicalSignificance: "",
+            description: "",
+            discoveredBy: "",
+            dateOfDiscovery: "",
+            preservationStatus: "",
+            artifactType: "",
+            historicalContext: "",
+            liked_by: [],
+            email: user?.email || "",
+            adderName: user?.displayName || "",
+          });
+        } else {
+          toast.error("Error", data.message, "error");
+        }
+      })
+      .catch((error) => {
+        toast.error("Error submitting form:", error);
+        toast.error("Error", "Failed to submit the form", "error");
       });
-
-
-
-
-    } else {
-      toast.error("Error", data.message, "error");
-    }
-  })
-  .catch((error) => {
-    toast.error("Error submitting form:", error);
-    toast.error("Error", "Failed to submit the form", "error");
-  });
 
     // console.log("Submitted data:", formData);
   };
@@ -278,7 +274,9 @@ useEffect(() => {
 
         {/* Historical Significance */}
         <label className="block mb-4">
-          <span className="text-[#3a3a3a] font-medium">Historical Significance</span>
+          <span className="text-[#3a3a3a] font-medium">
+            Historical Significance
+          </span>
           <textarea
             name="historicalSignificance"
             value={formData.historicalSignificance}
@@ -329,7 +327,9 @@ useEffect(() => {
 
         {/* Preservation Status */}
         <label className="block mb-4">
-          <span className="text-[#3a3a3a] font-medium">Preservation Status</span>
+          <span className="text-[#3a3a3a] font-medium">
+            Preservation Status
+          </span>
           <input
             type="text"
             name="preservationStatus"
@@ -383,7 +383,9 @@ useEffect(() => {
             readOnly
             className="w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#7a6a53] cursor-not-allowed"
           />
-          <p className="text-[#3a3a3a] font-medium mt-3 mb-1">Artifact Adder Email:</p>
+          <p className="text-[#3a3a3a] font-medium mt-3 mb-1">
+            Artifact Adder Email:
+          </p>
           <input
             type="email"
             value={formData.email}

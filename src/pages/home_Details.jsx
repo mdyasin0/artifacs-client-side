@@ -13,8 +13,8 @@ const Home_Details = () => {
   const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/artifacts/${id}`,{
-      credentials:'include'
+    fetch(`http://localhost:3000/artifacts/${id}`, {
+      credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => {
@@ -33,11 +33,10 @@ const Home_Details = () => {
     fetch(`http://localhost:3000/artifacts/like/${artifact._id}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json"
-        
+        "Content-Type": "application/json",
       },
-       credentials:'include',
-      body: JSON.stringify({ email: user.email })
+      credentials: "include",
+      body: JSON.stringify({ email: user.email }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -62,48 +61,87 @@ const Home_Details = () => {
   }
 
   return (
-    <div>
-      <div
-        key={artifact._id}
-        className="bg-[#faf4ec] flex gap-5 max-w-6xl mx-auto my-10 border-[#ddd] p-10 rounded-lg"
-      >
-        <img
-          className="max-w-60 rounded-lg mx-auto mb-3"
-          src={artifact.image}
-          alt=""
-        />
+    <div className="bg-[#faf4ec] max-w-6xl mx-auto my-10 p-6 rounded-lg shadow-md">
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Image Section */}
+        <div className="flex-shrink-0 md:w-1/3 w-full">
+          <img
+            className="w-full h-auto object-cover rounded-lg shadow-lg"
+            src={artifact.image}
+            alt={artifact.title}
+          />
+        </div>
 
-        <div>
-          <p><strong>Name:</strong> {artifact.title}</p>
-          <p><strong>Origin:</strong> {artifact.origin}</p>
-          <p><strong>Time Period:</strong> {artifact.timePeriod}</p>
-          <p><strong>Material:</strong> {artifact.material}</p>
-          <div className="flex item gap-5">
-            <p><strong>Height:</strong> {artifact.dimensions.height}</p>
-            <p><strong>Width:</strong> {artifact.dimensions.width}</p>
-            <p><strong>Weight:</strong> {artifact.dimensions.weight}</p>
+        {/* Details Section */}
+        <div className="md:w-2/3 w-full flex flex-col gap-3 text-gray-800">
+          <p>
+            <strong>Name:</strong> {artifact.title}
+          </p>
+          <p>
+            <strong>Origin:</strong> {artifact.origin}
+          </p>
+          <p>
+            <strong>Time Period:</strong> {artifact.timePeriod}
+          </p>
+          <p>
+            <strong>Material:</strong> {artifact.material}
+          </p>
+
+          <div className="flex flex-wrap gap-4">
+            <p>
+              <strong>Height:</strong> {artifact.dimensions.height}
+            </p>
+            <p>
+              <strong>Width:</strong> {artifact.dimensions.width}
+            </p>
+            <p>
+              <strong>Weight:</strong> {artifact.dimensions.weight}
+            </p>
           </div>
-          <p><strong>Condition:</strong> {artifact.condition}</p>
-          <p><strong>Current Location:</strong> {artifact.currentLocation}</p>
-          <p><strong>Estimated Value:</strong> {artifact.estimatedValue}</p>
-          <p><strong>Historical Significance:</strong> {artifact.historicalSignificance}</p>
-          <p><strong>Historical Context:</strong> {artifact.historicalContext}</p>
-          <p><strong>Description:</strong> {artifact.description}</p>
-          <p><strong>Discovered By:</strong> {artifact.discoveredBy}</p>
-          <p><strong>Date of Discovery:</strong> {artifact.dateOfDiscovery}</p>
-          <p><strong>Preservation Status:</strong> {artifact.preservationStatus}</p>
+
+          <p>
+            <strong>Condition:</strong> {artifact.condition}
+          </p>
+          <p>
+            <strong>Current Location:</strong> {artifact.currentLocation}
+          </p>
+          <p>
+            <strong>Estimated Value:</strong> {artifact.estimatedValue}
+          </p>
+          <p>
+            <strong>Historical Significance:</strong>{" "}
+            {artifact.historicalSignificance}
+          </p>
+          <p>
+            <strong>Historical Context:</strong> {artifact.historicalContext}
+          </p>
+          <p>
+            <strong>Description:</strong> {artifact.description}
+          </p>
+          <p>
+            <strong>Discovered By:</strong> {artifact.discoveredBy}
+          </p>
+          <p>
+            <strong>Date of Discovery:</strong> {artifact.dateOfDiscovery}
+          </p>
+          <p>
+            <strong>Preservation Status:</strong> {artifact.preservationStatus}
+          </p>
 
           {/* Like Button */}
-          <div className="flex items-center gap-3 mt-4">
+          <div className="flex items-center gap-4 mt-4">
             <button
               onClick={handleLikeToggle}
-              className={`flex items-center cursor-pointer gap-2 px-4 py-2 rounded-full ${
-                liked ? "bg-red-500 text-white" : "bg-gray-200 text-black"
-              }`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors duration-300
+                ${
+                  liked
+                    ? "bg-red-500 text-white hover:bg-red-600"
+                    : "bg-gray-200 text-black hover:bg-gray-300"
+                }`}
             >
-              <BiSolidLike /> {liked ? "Liked" : "Like"}
+              <BiSolidLike size={20} /> {liked ? "Dislike" : "Like"}
             </button>
-            <span>{likeCount} Likes</span>
+            <span className="text-lg font-semibold">{likeCount} Likes</span>
           </div>
         </div>
       </div>

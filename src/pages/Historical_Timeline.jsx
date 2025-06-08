@@ -5,9 +5,7 @@ const HistoricalTimeline = () => {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:3000/historical_timeline",{
-      credentials:'include'
-    })
+    fetch("http://localhost:3000/historical_timeline")
       .then((res) => res.json())
       .then((data) => setTimeline(data));
   }, []);
@@ -25,8 +23,6 @@ const HistoricalTimeline = () => {
             key={item._id}
             className="bg-[#faf4ec] border border-[#ddd] p-4 rounded-lg shadow-md"
           >
-
-            
             <img
               src={item.image}
               alt={item.name}
@@ -37,11 +33,16 @@ const HistoricalTimeline = () => {
             </h3>
 
             <div className="flex justify-between mb-5 items-center ">
-                <p><strong>year : </strong>{item.year}</p>
-                <p><strong>origin : </strong>{item.origin}</p>
+              <p>
+                <strong>year : </strong>
+                {item.year}
+              </p>
+              <p>
+                <strong>origin : </strong>
+                {item.origin}
+              </p>
             </div>
             <p className="text-[#7a6a53] mb-4">{item.description}</p>
-           
           </div>
         ))}
       </div>

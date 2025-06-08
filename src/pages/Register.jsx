@@ -14,12 +14,12 @@ const Register = () => {
   useEffect(() => {
       document.title = "Register page | Legacy Vault";
     }, []);
+    
   const googleregister = () => {
     googleLogin()
       .then((result) => {
         const user = result.user;
         toast.success("Register with Google successful");
-        // console.log("Register with Google:", user);
         setuser(user);
       })
       .catch((error) => {
@@ -27,7 +27,6 @@ const Register = () => {
       });
   };
 
- 
   const handaleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -37,31 +36,29 @@ const Register = () => {
     const URL = form.url.value;
     const password = form.password.value;
 
-
     const uppercase = /[A-Z]/.test(password);
-  const lowercase = /[a-z]/.test(password);
-  const lengthValid = password.length >= 6;
+    const lowercase = /[a-z]/.test(password);
+    const lengthValid = password.length >= 6;
 
-  if (!uppercase) {
-    toast.warn("Password must have at least one UPPERCASE letter");
-    return;
-  }
+    if (!uppercase) {
+      toast.warn("Password must have at least one UPPERCASE letter");
+      return;
+    }
 
-  if (!lowercase) {
-    toast.warn("Password must have at least one lowercase letter");
-    return;
-  }
+    if (!lowercase) {
+      toast.warn("Password must have at least one lowercase letter");
+      return;
+    }
 
-  if (!lengthValid) {
-    toast.warn("Password must be at least 6 characters long");
-    return;
-  }
+    if (!lengthValid) {
+      toast.warn("Password must be at least 6 characters long");
+      return;
+    }
 
     register(email, password)
       .then((res) => {
         const result = res.user;
 
-        
         updateProfile(result, {
           displayName: name,
           photoURL: URL,
@@ -80,17 +77,18 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#faf4ec] px-4 py-12">
+    <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-[#faf4ec] px-4 py-12 gap-8 md:gap-20">
       {/* lottie-animation */}
       <Player
         autoplay
         loop
         src="/Register_lottie.json"
         style={{ height: "300px", width: "300px" }}
-      ></Player>
+        className="flex-shrink-0"
+      />
 
       <div className="w-full max-w-md bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 border border-[#ddd]">
-        <h2 className="text-2xl font-semibold text-[#2f2e2e] text-center mb-2">
+        <h2 className="text-2xl font-semibold text-[#2f2e2e] text-center mb-6">
           Register now
         </h2>
 
@@ -147,7 +145,11 @@ const Register = () => {
             />
             <span
               onClick={() => setShowPassword(!ShowPassword)}
-              className="absolute top-[38px] right-3 text-lg cursor-pointer"
+              className="absolute top-10 right-3 text-lg cursor-pointer select-none"
+              aria-label={ShowPassword ? "Hide password" : "Show password"}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if(e.key === "Enter") setShowPassword(!ShowPassword); }}
             >
               {ShowPassword ? <FaRegEye /> : <FaRegEyeSlash />}
             </span>
