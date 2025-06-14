@@ -13,9 +13,7 @@ const LikedArtifacts = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3000/artifacts", {
-      credentials: "include",
-    })
+    fetch("https://artifacts-three-zeta.vercel.app/artifacts")
       .then((res) => res.json())
       .then((data) => {
         if (user?.email) {

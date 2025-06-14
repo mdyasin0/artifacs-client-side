@@ -13,14 +13,17 @@ const ArtifactCard = ({ artifact, user }) => {
   }, [artifact, user]);
 
   const handleLikeToggle = () => {
-    fetch(`http://localhost:3000/artifacts/like/${artifact._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({ email: user.email }),
-    })
+    fetch(
+      `https://artifacts-three-zeta.vercel.app/artifacts/like/${artifact._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ email: user.email }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

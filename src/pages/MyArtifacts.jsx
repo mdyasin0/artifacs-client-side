@@ -26,7 +26,7 @@ const MyArtifacts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/delete/${id}`, {
+        fetch(`https://artifacts-three-zeta.vercel.app/delete/${id}`, {
           method: "DELETE",
           credentials: "include",
         })
@@ -52,9 +52,7 @@ const MyArtifacts = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/artifacts", {
-      credentials: "include",
-    })
+    fetch("https://artifacts-three-zeta.vercel.app/artifacts")
       .then((res) => res.json())
       .then((data) => {
         if (user?.email) {

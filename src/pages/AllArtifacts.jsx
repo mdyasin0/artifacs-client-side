@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "swiper/swiper-bundle.css";
 import { BiSolidLike } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ArtifactCard = () => {
   const [artifact, setArtifact] = useState(null);
@@ -13,9 +14,7 @@ const ArtifactCard = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3000/artifacts", {
-      credentials: "include",
-    })
+    fetch("https://artifacts-three-zeta.vercel.app/artifacts")
       .then((res) => res.json())
       .then((data) => {
         const sortedData = data.sort(
@@ -23,7 +22,7 @@ const ArtifactCard = () => {
         );
         setArtifact(sortedData);
       })
-      .catch((error) => console.log("Error fetching data:", error));
+      .catch((error) => toast.error("Error fetching data:", error));
   }, []);
 
   if (!artifact) {

@@ -13,6 +13,7 @@ import { BiSolidLike } from "react-icons/bi";
 import { Link } from "react-router";
 import HistoricalTimeline from "./Historical_Timeline";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [artifact, setArtifact] = useState(null);
@@ -23,7 +24,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3000/artifacts")
+    fetch("https://artifacts-three-zeta.vercel.app/artifacts")
       .then((res) => res.json())
       .then((data) => {
         const sortedData = data.sort(
@@ -31,7 +32,7 @@ const Home = () => {
         );
         setArtifact(sortedData);
       })
-      .catch((error) => console.log("Error fetching data:", error));
+      .catch((error) => toast.error("Error fetching data:", error));
   }, []);
 
   if (!artifact) {
@@ -204,7 +205,7 @@ const Home = () => {
       {/* Show All / Show Less Button with tap animation */}
       <div className="text-center mb-20 mt-8">
         <Link
-        to='/AllArtifacts'
+          to="/AllArtifacts"
           onClick={() => setShowAll(!showAll)}
           className="bg-[#8b5e3c] hover:bg-[#a97442] text-white font-bold py-2 px-6 rounded-lg transition duration-300"
           whileTap={{ scale: 0.95 }}

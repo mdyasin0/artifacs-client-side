@@ -13,7 +13,7 @@ const Home_Details = () => {
   const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/artifacts/${id}`, {
+    fetch(`https://artifacts-three-zeta.vercel.app/artifacts/${id}`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -30,14 +30,17 @@ const Home_Details = () => {
       return;
     }
 
-    fetch(`http://localhost:3000/artifacts/like/${artifact._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify({ email: user.email }),
-    })
+    fetch(
+      `https://artifacts-three-zeta.vercel.app/artifacts/like/${artifact._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ email: user.email }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0 || data.matchedCount > 0) {

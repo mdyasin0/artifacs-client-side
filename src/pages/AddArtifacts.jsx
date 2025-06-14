@@ -55,7 +55,7 @@ export default function AddArtifactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/addartifacts", {
+    fetch("https://artifacts-three-zeta.vercel.app/addartifacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

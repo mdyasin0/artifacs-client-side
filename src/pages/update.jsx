@@ -50,7 +50,7 @@ const Update = () => {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:3000/update/${id}`, {
+    fetch(`https://artifacts-three-zeta.vercel.app/update/${id}`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -90,12 +90,15 @@ const Update = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`http://localhost:3000/update/${id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify(formData),
-    });
+    const res = await fetch(
+      `https://artifacts-three-zeta.vercel.app/update/${id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(formData),
+      }
+    );
 
     const result = await res.json();
 
