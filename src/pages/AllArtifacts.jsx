@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import "swiper/swiper-bundle.css";
 import { BiSolidLike } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ const ArtifactCard = () => {
   const [artifact, setArtifact] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
     document.title = "All Artifacts | Legacy Vault";
@@ -17,10 +18,7 @@ const ArtifactCard = () => {
     fetch("https://artifacts-three-zeta.vercel.app/artifacts")
       .then((res) => res.json())
       .then((data) => {
-        const sortedData = data.sort(
-          (a, b) => b.liked_by.length - a.liked_by.length
-        );
-        setArtifact(sortedData);
+        setArtifact(data);
       })
       .catch((error) => toast.error("Error fetching data:", error));
   }, []);
@@ -34,9 +32,18 @@ const ArtifactCard = () => {
   }
 
   // Filter artifact list by search term (case insensitive)
-  const filteredArtifacts = artifact.filter((item) =>
+  let filteredArtifacts = artifact.filter((item) =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  
+  filteredArtifacts.sort((a, b) => {
+    if (sortOrder === "asc") {
+      return a.title.localeCompare(b.title);
+    } else {
+      return b.title.localeCompare(a.title);
+    }
+  });
 
   return (
     <div>
@@ -45,15 +52,24 @@ const ArtifactCard = () => {
         All Artifacts
       </h1>
 
-      {/* Search Input */}
-      <div className="max-w-6xl mx-auto mb-8 px-4">
+      {/* Search and Sort Controls */}
+      <div className="max-w-6xl mx-auto mb-8 px-4 flex flex-col sm:flex-row justify-between gap-4">
         <input
           type="text"
           placeholder="Search by title..."
-          className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
+          className="w-full sm:w-1/2 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+
+        <select
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="w-full sm:w-48 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
+        >
+          <option value="asc">Sort: A to Z</option>
+          <option value="desc">Sort: Z to A</option>
+        </select>
       </div>
 
       {/* Cards Grid */}
@@ -63,6 +79,7 @@ const ArtifactCard = () => {
             <div
               key={item._id}
               className="bg-[#faf4ec] flex flex-col justify-between border border-[#ddd] p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              style={{ minHeight: "400px" }} 
             >
               <img
                 className="max-w-full h-48 object-cover rounded-lg mx-auto mb-4"
