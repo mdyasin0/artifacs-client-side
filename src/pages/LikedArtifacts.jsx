@@ -27,12 +27,12 @@ const LikedArtifacts = () => {
 
   return (
     <>
-      <h1 className="text-center mt-10 font-bold text-4xl mb-10 text-[#2f2e2e]">
+      <h1 className="text-center mt-10 dark:text-white  font-bold text-4xl mb-10 text-[#2f2e2e]">
         Liked Artifacts
       </h1>
       {likedata.length === 0 ? (
         <div>
-          <p className="text-center text-gray-600 text-lg mb-10">
+          <p className="text-center dark:text-white text-gray-600 text-lg mb-10">
             You haven't liked any artifacts yet.
           </p>
           <Player

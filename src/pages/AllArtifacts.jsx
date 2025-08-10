@@ -48,7 +48,7 @@ const ArtifactCard = () => {
   return (
     <div>
       {/* Title */}
-      <h1 className="text-center font-bold mt-10 text-4xl mb-10 text-[#2f2e2e]">
+      <h1 className="text-center dark:text-white font-bold mt-10 text-4xl mb-10 text-[#2f2e2e]">
         All Artifacts
       </h1>
 
@@ -57,7 +57,7 @@ const ArtifactCard = () => {
         <input
           type="text"
           placeholder="Search by title..."
-          className="w-full sm:w-1/2 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
+          className="w-full sm:w-1/2 border dark:text-white border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -67,8 +67,8 @@ const ArtifactCard = () => {
           onChange={(e) => setSortOrder(e.target.value)}
           className="w-full sm:w-48 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
         >
-          <option value="asc">Sort: A to Z</option>
-          <option value="desc">Sort: Z to A</option>
+          <option value="asc"   className="dark:text-black">Sort: A to Z</option>
+          <option value="desc"   className="dark:text-black">Sort: Z to A</option>
         </select>
       </div>
 

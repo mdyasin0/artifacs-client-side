@@ -33,11 +33,11 @@ const HistoricalTimeline = () => {
             </h3>
 
             <div className="flex justify-between mb-5 items-center ">
-              <p>
+              <p className="dark:text-black">
                 <strong>year : </strong>
                 {item.year}
               </p>
-              <p>
+              <p className="dark:text-black">
                 <strong>origin : </strong>
                 {item.origin}
               </p>

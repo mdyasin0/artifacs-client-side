@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
         </h1>
 
         <section className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">1. Introduction</h2>
+          <h2 className="text-xl font-semibold  mb-2">1. Introduction</h2>
           <p>
             At Historical Artifacts Tracker, we respect your privacy and are
             committed to protecting any personal information you share with us.

@@ -152,7 +152,7 @@ const Home = () => {
 
       {/* Featured Artifacts Title */}
       <motion.h1
-        className="text-center font-bold text-3xl sm:text-4xl md:text-5xl mb-10 text-[#2f2e2e]"
+        className="text-center font-bold dark:text-white  text-3xl sm:text-4xl md:text-5xl mb-10 text-[#2f2e2e]"
         variants={titleVariants}
         initial="hidden"
         whileInView="visible"
@@ -184,7 +184,7 @@ const Home = () => {
             <h1 className="text-[#3a3a3a] text-xl sm:text-2xl font-bold mb-2">
               {user.title}
             </h1>
-            <p className="text-sm sm:text-base mb-4">
+            <p className="text-sm sm:text-base dark:text-black mb-4">
               <strong>Description :</strong> {user.description}
             </p>
             <div className="flex justify-between items-center mt-auto">
