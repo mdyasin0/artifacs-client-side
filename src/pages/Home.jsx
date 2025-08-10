@@ -219,7 +219,7 @@ const Home = () => {
 
       {/* Artifact Care Tips Section */}
       <motion.section
-        className="bg-indigo-50 p-6 mt-20 sm:p-10 rounded-lg shadow-md max-w-4xl mx-auto mb-16"
+        className="bg-indigo-50 p-6 mt-20 sm:p-10 rounded-lg shadow-md max-w-7xl mx-auto mb-16"
         variants={titleVariants}
         initial="hidden"
         whileInView="visible"
