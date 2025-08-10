@@ -133,14 +133,16 @@ const MyArtifacts = () => {
             ))}
           </div>
 
-          <div className="text-center mb-20">
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="bg-[#8b5e3c] hover:bg-[#a97442] text-[#f5f5f5] font-bold py-2 px-6 rounded-lg transition duration-300"
-            >
-              {showAll ? "Show Less" : "Show All"}
-            </button>
-          </div>
+          {likedata.length > 6 && (
+            <div className="text-center mb-20">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="bg-[#8b5e3c] hover:bg-[#a97442] text-[#f5f5f5] font-bold py-2 px-6 rounded-lg transition duration-300"
+              >
+                {showAll ? "Show Less" : "Show All"}
+              </button>
+            </div>
+          )}
         </div>
       )}
     </>
