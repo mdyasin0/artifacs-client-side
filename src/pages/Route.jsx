@@ -45,11 +45,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/AddArtifactForm",
-        element: (
-          <PrivateRoute>
-            <AddArtifactForm />
-          </PrivateRoute>
-        ),
+        element: <AddArtifactForm />,
       },
       {
         path: "/LikedArtifacts",
