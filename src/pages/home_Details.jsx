@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { BiSolidLike } from "react-icons/bi";
 import { useParams } from "react-router";
 import { Authcontext } from "../Provider/Authprovider";
-import { toast } from "react-toastify/unstyled";
+import { toast } from "react-toastify";
 
 const Home_Details = () => {
   const { user } = useContext(Authcontext);
