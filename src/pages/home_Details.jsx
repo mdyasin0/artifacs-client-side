@@ -22,7 +22,7 @@ const Home_Details = () => {
         setLiked(data?.liked_by?.includes(user?.email));
         setLikeCount(data?.liked_by?.length || 0);
       });
-  }, [id]);
+  }, [id ,user?.email]);
 
   const handleLikeToggle = () => {
     if (!user) {

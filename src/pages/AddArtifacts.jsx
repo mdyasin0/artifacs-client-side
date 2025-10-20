@@ -53,6 +53,37 @@ export default function AddArtifactForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+// image upload haandale 
+
+const handleImageUpload = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const formDataCloud = new FormData();
+  formDataCloud.append("file", file);
+  formDataCloud.append("upload_preset", "artifact_upload");
+  try {
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dhdfdmc8k/image/upload",
+      {
+        method: "POST",
+        body: formDataCloud,
+      }
+    );
+    const data = await res.json();
+    // Cloudinary থেকে image URL নেওয়া
+    setFormData((prev) => ({ ...prev, image: data.secure_url }));
+    toast.success("Image uploaded successfully!");
+  } catch (err) {
+    console.error("Upload failed:", err);
+    toast.error("Image upload failed");
+  }
+};
+
+
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch("https://artifacts-chi-lovat.vercel.app/addartifacts", {
@@ -128,16 +159,14 @@ export default function AddArtifactForm() {
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f] placeholder-[#7a6a53] focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
           />
         </label>
-
-        {/* Image URL */}
+{/* image upload */}
         <label className="block mb-4">
-          <span className="text-[#3a3a3a] font-medium">Image URL</span>
+          <span className="text-[#3a3a3a] font-medium">Upload Image</span>
           <input
-            type="url"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-            placeholder="https://example.com/image.jpg"
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            required
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
           />
         </label>
@@ -150,6 +179,7 @@ export default function AddArtifactForm() {
             name="timePeriod"
             value={formData.timePeriod}
             onChange={handleChange}
+            required
             placeholder="e.g. 1500-1600 AD"
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
           />
@@ -163,6 +193,7 @@ export default function AddArtifactForm() {
             name="origin"
             value={formData.origin}
             onChange={handleChange}
+           required
             placeholder="Place of origin"
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
           />
@@ -176,6 +207,7 @@ export default function AddArtifactForm() {
             name="material"
             value={formData.material}
             onChange={handleChange}
+            required
             placeholder="Material used"
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
           />
@@ -189,6 +221,7 @@ export default function AddArtifactForm() {
             name="dimensions"
             value={formData.dimensions}
             onChange={handleChange}
+            required
             placeholder="e.g. 10x20x5 cm"
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
           />
@@ -203,6 +236,7 @@ export default function AddArtifactForm() {
               name="height"
               value={formData.height}
               onChange={handleChange}
+              required
               placeholder="Height"
               className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
             />
@@ -216,6 +250,7 @@ export default function AddArtifactForm() {
               value={formData.width}
               onChange={handleChange}
               placeholder="Width"
+              required
               className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
             />
           </label>
@@ -227,6 +262,7 @@ export default function AddArtifactForm() {
               name="weight"
               value={formData.weight}
               onChange={handleChange}
+              required
               placeholder="Weight"
               className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
             />
@@ -239,6 +275,7 @@ export default function AddArtifactForm() {
           <input
             type="text"
             name="condition"
+            required
             value={formData.condition}
             onChange={handleChange}
             placeholder="e.g. Good, Fair, Poor"
@@ -254,6 +291,7 @@ export default function AddArtifactForm() {
             name="currentLocation"
             value={formData.currentLocation}
             onChange={handleChange}
+            required
             placeholder="Museum or storage place"
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
           />
@@ -266,6 +304,7 @@ export default function AddArtifactForm() {
             type="text"
             name="estimatedValue"
             value={formData.estimatedValue}
+            required
             onChange={handleChange}
             placeholder="Value in currency"
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
@@ -281,6 +320,7 @@ export default function AddArtifactForm() {
             name="historicalSignificance"
             value={formData.historicalSignificance}
             onChange={handleChange}
+            required
             rows="3"
             placeholder="Significance details"
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
@@ -294,6 +334,7 @@ export default function AddArtifactForm() {
             name="description"
             value={formData.description}
             onChange={handleChange}
+            required
             rows="3"
             placeholder="Detailed description"
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
@@ -309,6 +350,7 @@ export default function AddArtifactForm() {
             value={formData.discoveredBy}
             onChange={handleChange}
             placeholder="Name of discoverer"
+            required
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
           />
         </label>
@@ -319,6 +361,7 @@ export default function AddArtifactForm() {
           <input
             type="date"
             name="dateOfDiscovery"
+          required
             value={formData.dateOfDiscovery}
             onChange={handleChange}
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
@@ -335,6 +378,7 @@ export default function AddArtifactForm() {
             name="preservationStatus"
             value={formData.preservationStatus}
             onChange={handleChange}
+            required
             placeholder="Current preservation condition"
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
           />
@@ -348,6 +392,7 @@ export default function AddArtifactForm() {
             value={formData.artifactType}
             onChange={handleChange}
             required
+           
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
           >
             <option value="">Select type</option>
@@ -367,6 +412,7 @@ export default function AddArtifactForm() {
             value={formData.historicalContext}
             onChange={handleChange}
             rows="3"
+            required
             placeholder="Contextual background"
             className="mt-1 block w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#3b2f2f]"
           />
@@ -381,8 +427,9 @@ export default function AddArtifactForm() {
             type="text"
             name="adderName"
             value={formData.adderName}
-            onChange={user ? undefined : handleChange} 
+            onChange={user ? undefined : handleChange}
             readOnly={!!user}
+            required
             className="w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#7a6a53] cursor-not-allowed"
           />
           <p className="text-[#3a3a3a] font-medium mt-3 mb-1">
@@ -392,8 +439,9 @@ export default function AddArtifactForm() {
             type="email"
             name="email"
             value={formData.email}
-            onChange={user ? undefined : handleChange}  
+            onChange={user ? undefined : handleChange}
             readOnly={!!user}
+            required
             className="w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#7a6a53] cursor-not-allowed"
           />
         </div>

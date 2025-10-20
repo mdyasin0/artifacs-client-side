@@ -208,7 +208,7 @@ const Home = () => {
           to="/AllArtifacts"
           onClick={() => setShowAll(!showAll)}
           className="bg-[#8b5e3c] hover:bg-[#a97442] text-white font-bold py-2 px-6 rounded-lg transition duration-300"
-          whileTap={{ scale: 0.95 }}
+      
         >
           {showAll ? "Show Less" : "Show All"}
         </Link>
