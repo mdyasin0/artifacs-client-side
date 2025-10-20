@@ -13,7 +13,7 @@ const LikedArtifacts = () => {
   }, []);
 
   useEffect(() => {
-    fetch("https://artifacts-three-zeta.vercel.app/artifacts")
+    fetch("https://artifacts-chi-lovat.vercel.app/artifacts")
       .then((res) => res.json())
       .then((data) => {
         if (user?.email) {

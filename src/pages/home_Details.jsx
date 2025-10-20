@@ -13,16 +13,16 @@ const Home_Details = () => {
   const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {
-    fetch(`https://artifacts-three-zeta.vercel.app/artifacts/${id}`, {
-      credentials: "include",
-    })
+    fetch(`https://artifacts-chi-lovat.vercel.app/artifacts/${id}`, {
+    credentials: "include",
+  })
       .then((res) => res.json())
       .then((data) => {
         setArtifact(data);
         setLiked(data?.liked_by?.includes(user?.email));
         setLikeCount(data?.liked_by?.length || 0);
       });
-  }, [id, user?.email]);
+  }, [id]);
 
   const handleLikeToggle = () => {
     if (!user) {
@@ -31,7 +31,7 @@ const Home_Details = () => {
     }
 
     fetch(
-      `https://artifacts-three-zeta.vercel.app/artifacts/like/${artifact._id}`,
+      `https://artifacts-chi-lovat.vercel.app/artifacts/like/${artifact._id}`,
       {
         method: "PATCH",
         headers: {
@@ -92,13 +92,13 @@ const Home_Details = () => {
 
           <div className="flex flex-wrap gap-4">
             <p>
-              <strong>Height:</strong> {artifact.dimensions.height}
+              <strong>Height:</strong> {artifact?.dimensions?.height}
             </p>
             <p>
-              <strong>Width:</strong> {artifact.dimensions.width}
+              <strong>Width:</strong> {artifact?.dimensions?.width}
             </p>
             <p>
-              <strong>Weight:</strong> {artifact.dimensions.weight}
+              <strong>Weight:</strong> {artifact?.dimensions?.weight}
             </p>
           </div>
 

@@ -55,7 +55,7 @@ export default function AddArtifactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("https://artifacts-three-zeta.vercel.app/addartifacts", {
+    fetch("https://artifacts-chi-lovat.vercel.app/addartifacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -379,8 +379,10 @@ export default function AddArtifactForm() {
           </p>
           <input
             type="text"
+            name="adderName"
             value={formData.adderName}
-            readOnly
+            onChange={user ? undefined : handleChange} 
+            readOnly={!!user}
             className="w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#7a6a53] cursor-not-allowed"
           />
           <p className="text-[#3a3a3a] font-medium mt-3 mb-1">
@@ -388,8 +390,10 @@ export default function AddArtifactForm() {
           </p>
           <input
             type="email"
+            name="email"
             value={formData.email}
-            readOnly
+            onChange={user ? undefined : handleChange}  
+            readOnly={!!user}
             className="w-full rounded border border-[#ddd] bg-[#faf4ec] px-3 py-2 text-[#7a6a53] cursor-not-allowed"
           />
         </div>

@@ -14,7 +14,7 @@ const ArtifactCard = ({ artifact, user }) => {
 
   const handleLikeToggle = () => {
     fetch(
-      `https://artifacts-three-zeta.vercel.app/artifacts/like/${artifact._id}`,
+      `https://artifacts-chi-lovat.vercel.app/artifacts/like/${artifact._id}`,
       {
         method: "PATCH",
         headers: {

@@ -46,7 +46,7 @@ export const Authprovider = ({ children }) => {
       if (currentuser?.email) {
         const userdata = { email: currentuser.email };
         axios
-          .post("https://artifacts-three-zeta.vercel.app/jwt", userdata, {
+          .post("https://artifacts-chi-lovat.vercel.app/jwt", userdata, {
             withCredentials: true,
           })
           .then((res) => {
