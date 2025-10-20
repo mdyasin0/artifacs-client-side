@@ -1,14 +1,19 @@
-import  { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "swiper/swiper-bundle.css";
 import { BiSolidLike } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import CommentModal from "./CommentModal";
+import { Authcontext } from "../Provider/Authprovider";
 
 const ArtifactCard = () => {
   const [artifact, setArtifact] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");
+  const [selectedArtifactId, setSelectedArtifactId] = useState(null);
+  const [showCommentModal, setShowCommentModal] = useState(false);
+  const { user } = useContext(Authcontext);
 
   useEffect(() => {
     document.title = "All Artifacts | Legacy Vault";
@@ -36,7 +41,6 @@ const ArtifactCard = () => {
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  
   filteredArtifacts.sort((a, b) => {
     if (sortOrder === "asc") {
       return a.title.localeCompare(b.title);
@@ -67,8 +71,12 @@ const ArtifactCard = () => {
           onChange={(e) => setSortOrder(e.target.value)}
           className="w-full sm:w-48 border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-[#8b5e3c]"
         >
-          <option value="asc"   className="dark:text-black">Sort: A to Z</option>
-          <option value="desc"   className="dark:text-black">Sort: Z to A</option>
+          <option value="asc" className="dark:text-black">
+            Sort: A to Z
+          </option>
+          <option value="desc" className="dark:text-black">
+            Sort: Z to A
+          </option>
         </select>
       </div>
 
@@ -79,7 +87,7 @@ const ArtifactCard = () => {
             <div
               key={item._id}
               className="bg-[#faf4ec] flex flex-col justify-between border border-[#ddd] p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
-              style={{ minHeight: "400px" }} 
+              style={{ minHeight: "400px" }}
             >
               <img
                 className="max-w-full h-48 object-cover rounded-lg mx-auto mb-4"
@@ -101,6 +109,25 @@ const ArtifactCard = () => {
                 >
                   View Details
                 </Link>
+
+                <button
+                  onClick={() => {
+                    setSelectedArtifactId(item._id);
+                    setShowCommentModal(true);
+                  }}
+                  className="text-sm bg-[#d4bba1] text-[#3a2a1b] px-3 py-2 rounded-lg font-semibold hover:bg-[#caa886] transition"
+                >
+                  💬 Comment
+                </button>
+
+                {showCommentModal && selectedArtifactId && (
+                  <CommentModal
+                    artifactId={selectedArtifactId}
+                    user={user}
+                    onClose={() => setShowCommentModal(false)}
+                  />
+                )}
+
                 <div className="flex items-center gap-1 text-[#8b5e3c] font-semibold">
                   <BiSolidLike size={20} />
                   <span>{item.liked_by.length}</span>
