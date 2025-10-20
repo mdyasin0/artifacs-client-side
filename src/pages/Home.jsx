@@ -15,6 +15,7 @@ import HistoricalTimeline from "./Historical_Timeline";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 
+
 const Home = () => {
   const [artifact, setArtifact] = useState(null);
   const [showAll, setShowAll] = useState(false);

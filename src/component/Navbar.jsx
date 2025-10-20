@@ -51,6 +51,13 @@ const Navbar = () => {
             Home
           </NavLink>
           <NavLink
+            to="/artifactcomparison"
+            onClick={toggleMenu}
+            className="block hover:text-[#d4af37]"
+          >
+            comperison
+          </NavLink>
+          <NavLink
             to="/AllArtifacts"
             className={({ isActive }) =>
               isActive
@@ -147,6 +154,9 @@ const Navbar = () => {
           >
             Add Artifacts
           </NavLink>
+
+           
+
 
           {/* User Avatar for Mobile */}
           {user ? (

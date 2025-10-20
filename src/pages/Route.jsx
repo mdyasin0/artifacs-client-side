@@ -15,6 +15,7 @@ import LikedArtifacts from "./LikedArtifacts";
 import MyArtifacts from "./MyArtifacts";
 import Update from "./update";
 import Error from "./Error.jsx";
+import ArtifactComparison from "./ArtifactComparison.jsx";
 
 const router = createBrowserRouter([
   {
@@ -51,7 +52,11 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
+      {
+        path: "/artifactcomparison" ,
+        element : <ArtifactComparison/> ,
+      }
+,
       {
         path: "/MyArtifacts",
         element: (
