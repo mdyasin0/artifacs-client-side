@@ -57,6 +57,14 @@ const Navbar = () => {
           >
             comperison
           </NavLink>
+           <NavLink
+            to="/artifactquiz"
+            onClick={toggleMenu}
+            className="block hover:text-[#d4af37]"
+          >
+            quiz
+          </NavLink>
+          
           <NavLink
             to="/AllArtifacts"
             className={({ isActive }) =>

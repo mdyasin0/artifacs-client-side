@@ -16,6 +16,7 @@ import MyArtifacts from "./MyArtifacts";
 import Update from "./update";
 import Error from "./Error.jsx";
 import ArtifactComparison from "./ArtifactComparison.jsx";
+import ArtifactQuiz from "./ArtifactQuiz.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
         path: "/Home",
         Component: Home,
       },
+      {
+        path : "/artifactquiz" ,
+        element : <ArtifactQuiz/> ,
+      }
+      ,
 
       {
         path: "/AllArtifacts",
