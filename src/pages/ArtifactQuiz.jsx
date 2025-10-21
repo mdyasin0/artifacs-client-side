@@ -23,7 +23,7 @@ const ArtifactQuiz = () => {
   // Fetch data from backend
   useEffect(() => {
     axios
-      .get("http://localhost:3000/artifacts")
+      .get("https://artifacts-chi-lovat.vercel.app/artifacts")
       .then((res) => setArtifacts(res.data))
       .catch((err) => console.error(err));
   }, []);

@@ -20,7 +20,7 @@ const CommentModal = ({ artifactId, user, onClose }) => {
   const loadComments = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3000/comments/${artifactId}`);
+      const res = await fetch(`https://artifacts-chi-lovat.vercel.app/comments/${artifactId}`);
       const data = await res.json();
       setComments(data);
     } catch {
@@ -36,7 +36,7 @@ const CommentModal = ({ artifactId, user, onClose }) => {
     setLoading(true);
     try {
       // first load all coment  by id
-      const res = await fetch(`http://localhost:3000/comments/${artifactId}`);
+      const res = await fetch(`https://artifacts-chi-lovat.vercel.app/comments/${artifactId}`);
       const data = await res.json();
 
       // then filter login user comments
@@ -75,7 +75,7 @@ const CommentModal = ({ artifactId, user, onClose }) => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/comments", {
+      const res = await fetch("https://artifacts-chi-lovat.vercel.app/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -101,7 +101,7 @@ const CommentModal = ({ artifactId, user, onClose }) => {
     if (!confirm) return;
 
     try {
-      const res = await fetch(`http://localhost:3000/comments/${id}`, {
+      const res = await fetch(`https://artifacts-chi-lovat.vercel.app/comments/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" }, // Must include this
         body: JSON.stringify({ email: user.email }), // email send
@@ -122,7 +122,7 @@ const CommentModal = ({ artifactId, user, onClose }) => {
   const handleUpdate = async (id) => {
     if (!editingText.trim()) return toast.warn("Cannot be empty");
     try {
-      const res = await fetch(`http://localhost:3000/comments/${id}`, {
+      const res = await fetch(`https://artifacts-chi-lovat.vercel.app/comments/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: user.email, text: editingText }), // email add

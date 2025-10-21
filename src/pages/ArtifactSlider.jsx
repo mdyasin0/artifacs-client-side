@@ -6,7 +6,7 @@ const ArtifactSlider = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/artifacts")
+      .get("https://artifacts-chi-lovat.vercel.app/artifacts")
       .then((res) => setArtifacts(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -20,7 +20,11 @@ const ArtifactSlider = () => {
       <div className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-white via-white/80 to-transparent z-10"></div>
 
       {artifacts.length === 0 ? (
-        <p className="text-center text-gray-600 text-lg">Loading images...</p>
+        <div className=" flex justify-center my-10"><span className="loading loading-bars loading-xs"></span>
+<span className="loading loading-bars loading-sm"></span>
+<span className="loading loading-bars loading-md"></span>
+<span className="loading loading-bars loading-lg"></span>
+<span className="loading loading-bars loading-xl"></span> </div>
       ) : (
         <div className="overflow-hidden">
           <div
