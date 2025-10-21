@@ -139,48 +139,66 @@ const ArtifactComparison = () => {
       </div>
 
       {/* 🔹 Comparison Section */}
-      {artifact1 && artifact2 && (
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
-          {[artifact1, artifact2].map((artifact, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl shadow-lg p-5 border border-gray-200 hover:shadow-2xl transition"
-            >
-              <img
-                src={artifact.image}
-                alt={artifact.title}
-                className="w-full h-64 object-cover rounded-lg mb-4"
-              />
-              <h2 className="text-2xl font-bold text-indigo-700 mb-2">{artifact.title}</h2>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Time Period:</span> {artifact.timePeriod}
-              </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Origin:</span> {artifact.origin}
-              </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Material:</span> {artifact.material}
-              </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Dimensions:</span>{" "}
-                {artifact.dimensions?.height}, {artifact.dimensions?.width}, {artifact.dimensions?.weight}
-              </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Condition:</span> {artifact.condition}
-              </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Location:</span> {artifact.currentLocation}
-              </p>
-              <p className="text-gray-700 mb-1">
-                <span className="font-semibold">Value:</span> {artifact.estimatedValue}
-              </p>
-              <p className="text-gray-600 mt-2 italic">
-                {artifact.historicalSignificance}
-              </p>
-            </div>
-          ))}
+     {artifact1 && artifact2 && (
+  <div className="grid md:grid-cols-2 gap-6 mb-12">
+    {[artifact1, artifact2].map((artifact, index) => (
+      <div
+        key={index}
+        className="bg-white rounded-xl shadow-lg p-5 border border-gray-200 hover:shadow-2xl transition"
+      >
+        <img
+          src={artifact.image}
+          alt={artifact.title}
+          className="w-full h-64 object-cover rounded-lg mb-4"
+        />
+        <h2 className="text-2xl font-bold text-indigo-700 mb-3">
+          {artifact.title}
+        </h2>
+
+        {/* General Info */}
+        <div className="space-y-1 text-gray-700">
+          <p><span className="font-semibold">Time Period:</span> {artifact.timePeriod}</p>
+          <p><span className="font-semibold">Origin:</span> {artifact.origin}</p>
+          <p><span className="font-semibold">Material:</span> {artifact.material}</p>
+          <p><span className="font-semibold">Artifact Type:</span> {artifact.artifactType}</p>
+          <p><span className="font-semibold">Condition:</span> {artifact.condition}</p>
+          <p><span className="font-semibold">Preservation Status:</span> {artifact.preservationStatus}</p>
+          <p><span className="font-semibold">Current Location:</span> {artifact.currentLocation}</p>
+          <p><span className="font-semibold">Estimated Value:</span> {artifact.estimatedValue}</p>
         </div>
-      )}
+
+        {/* Dimensions */}
+        {artifact.dimensions && (
+          <div className="mt-2 text-gray-700">
+            <p>
+              <span className="font-semibold">Dimensions:</span>{" "}
+              {artifact.dimensions.height || "N/A"} H ×{" "}
+              {artifact.dimensions.width || "N/A"} W ×{" "}
+              {artifact.dimensions.weight || "N/A"} Wt
+            </p>
+          </div>
+        )}
+
+        {/* Discovery Info */}
+        <div className="mt-3 text-gray-700">
+          <p><span className="font-semibold">Discovered By:</span> {artifact.discoveredBy}</p>
+          <p><span className="font-semibold">Date of Discovery:</span> {artifact.dateOfDiscovery}</p>
+          
+        </div>
+
+        {/* Descriptions */}
+        <div className="mt-4 text-gray-700">
+          <p><span className="font-semibold">Description:</span> {artifact.description}</p>
+          <p><span className="font-semibold">Historical Context:</span> {artifact.historicalContext}</p>
+          <p className="italic text-gray-600">
+            <span className="font-semibold">Significance:</span> {artifact.historicalSignificance}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+)}
+
 
       {/* 📝 Notes Section */}
       <div className="max-w-3xl mx-auto mb-12 bg-white p-6 rounded-xl shadow-md">
